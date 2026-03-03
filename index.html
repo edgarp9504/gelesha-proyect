@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GELESHA — Spa · Estética Corporal y Facial</title>
+  <meta name="description" content="Spa, Estética Corporal y Facial en México. Masajes, faciales, depilación, aparatología y más. Consulta nuestro catálogo completo de servicios y precios." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ══ NAV ══════════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="logo-link">
+        <img src="images/logo.png" alt="GELESHA" class="logo-img" />
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#servicios">Servicios</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#testimonios">Reseñas</a>
+        <a href="#contacto" class="btn-nav">Contacto</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══ HERO ═════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">🌿 Spa · Estética Corporal y Facial 🌸</p>
+      <h1 class="hero-title">Renueva tu<br /><em>belleza natural</em></h1>
+      <p class="hero-sub">
+        Descubre un oasis de bienestar donde la belleza<br />
+        y la relajación se unen en perfecta armonía.
+      </p>
+      <div class="hero-actions">
+        <a href="#catalogo" class="btn-primary">
+          <i class="fa-solid fa-spa"></i> Ver servicios y precios
+        </a>
+        <a href="#contacto" class="btn-ghost">Contáctanos</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Descubre más</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="badge badge--left">
+      <i class="fa-solid fa-star"></i>
+      <div><strong>+50 Servicios</strong><small>Catálogo completo</small></div>
+    </div>
+    <div class="badge badge--right">
+      <i class="fa-solid fa-shield-halved"></i>
+      <div><strong>100% Seguro</strong><small>Productos certificados</small></div>
+    </div>
+  </section>
+
+  <!-- ══ STATS ═════════════════════════════════════════════ -->
+  <section class="stats">
+    <div class="stats-inner">
+      <div class="stat">
+        <span class="stat-num" data-target="50">0</span>+
+        <p>Servicios disponibles</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num" data-target="4">0</span>
+        <p>Categorías de tratamientos</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num" data-target="500">0</span>+
+        <p>Clientas felices</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num" data-target="100">0</span>%
+        <p>Productos certificados</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SERVICIOS DESTACADOS ══════════════════════════════ -->
+  <section class="servicios section" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Lo que ofrecemos</p>
+        <h2 class="section-title">Nuestras <em>especialidades</em></h2>
+        <p class="section-desc">Tratamientos diseñados a tu medida con tecnología avanzada y productos premium.</p>
+      </div>
+      <div class="categorias-grid">
+
+        <div class="cat-card" data-delay="0">
+          <div class="cat-icon"><i class="fa-solid fa-hand-dots"></i></div>
+          <h3>Masajes</h3>
+          <p>Relajantes, terapéuticos, drenaje linfático, piedras calientes, ayurveda y más. Desde $500.</p>
+          <a href="#catalogo" class="cat-link">Ver masajes <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="cat-card" data-delay="100">
+          <div class="cat-icon"><i class="fa-solid fa-face-smile-beam"></i></div>
+          <h3>Faciales</h3>
+          <p>Limpieza profunda, antiedad, control acné, dermapen, hidratante y más. Desde $700.</p>
+          <a href="#catalogo" class="cat-link">Ver faciales <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="cat-card" data-delay="200">
+          <div class="cat-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Aparatología</h3>
+          <p>Cavitación, EMSCULPT, radiofrecuencia, presoterapia, gimnasia pasiva. Desde $500.</p>
+          <a href="#catalogo" class="cat-link">Ver aparatología <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="cat-card" data-delay="300">
+          <div class="cat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h3>Reductivos</h3>
+          <p>Abdomen, piernas, brazos, glúteos, criolipólisis, anticelulitis. Desde $500.</p>
+          <a href="#catalogo" class="cat-link">Ver reductivos <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="cat-card" data-delay="400">
+          <div class="cat-icon"><i class="fa-solid fa-leaf"></i></div>
+          <h3>Depilación</h3>
+          <p>Pierna completa, bikini brasileño, cara, espalda, axilas, cuerpo completo. Desde $250.</p>
+          <a href="#catalogo" class="cat-link">Ver depilación <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="cat-card cat-card--cta" data-delay="500">
+          <i class="fa-solid fa-search cat-cta-icon"></i>
+          <h3>¿Buscas algo específico?</h3>
+          <p>Usa nuestro buscador para encontrar el servicio ideal para ti con precios exactos.</p>
+          <a href="#catalogo" class="btn-primary">Buscar servicio</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CATÁLOGO + BUSCADOR ════════════════════════════════ -->
+  <section class="catalogo section" id="catalogo">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Catálogo completo</p>
+        <h2 class="section-title">Servicios y <em>Precios</em></h2>
+        <p class="section-desc">Consulta todos nuestros tratamientos con precios y duración. Usa el buscador para encontrar lo que necesitas.</p>
+      </div>
+
+      <!-- BUSCADOR -->
+      <div class="search-box">
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-search search-ico"></i>
+          <input type="text" id="searchInput" placeholder="Buscar servicio… ej: masaje, facial, piernas…" autocomplete="off" />
+          <button class="search-clear" id="searchClear" aria-label="Limpiar">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="search-filters" id="searchFilters">
+          <button class="filter-btn active" data-cat="todos">Todos</button>
+          <button class="filter-btn" data-cat="Masaje">Masajes</button>
+          <button class="filter-btn" data-cat="Facial">Faciales</button>
+          <button class="filter-btn" data-cat="Aparatologia">Aparatología</button>
+          <button class="filter-btn" data-cat="Reductivo">Reductivos</button>
+          <button class="filter-btn" data-cat="Depilacion">Depilación</button>
+          <button class="filter-btn" data-cat="Otros">Otros</button>
+        </div>
+        <p class="search-count" id="searchCount">Mostrando <strong id="countNum">0</strong> servicios</p>
+      </div>
+
+      <!-- GRID DE SERVICIOS -->
+      <div class="servicios-catalog" id="serviciosCatalog">
+        <!-- Generado por JS -->
+      </div>
+
+      <!-- Sin resultados -->
+      <div class="no-results" id="noResults" hidden>
+        <i class="fa-solid fa-face-frown-open"></i>
+        <h3>No encontramos ese servicio</h3>
+        <p>Intenta con otra palabra o <a href="#contacto">escríbenos</a> para más información.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NOSOTROS ══════════════════════════════════════════ -->
+  <section class="nosotros section" id="nosotros">
+    <div class="container nosotros-inner">
+      <div class="nosotros-visual">
+        <div class="visual-card visual-card--top">
+          <i class="fa-solid fa-certificate"></i>
+          <span>Especialistas certificadas</span>
+        </div>
+        <div class="visual-circle">
+          <div class="vc-ring vc-ring--1"></div>
+          <div class="vc-ring vc-ring--2"></div>
+          <img src="images/logo.png" alt="GELESHA" class="vc-logo" />
+        </div>
+        <div class="visual-card visual-card--bottom">
+          <i class="fa-solid fa-heart-pulse"></i>
+          <span>Tecnología avanzada</span>
+        </div>
+      </div>
+      <div class="nosotros-text">
+        <p class="section-eyebrow">Sobre nosotros</p>
+        <h2 class="section-title">Tu belleza,<br /><em>nuestro arte</em></h2>
+        <p>En <strong>Gelesha</strong> creemos que cada persona merece sentirse extraordinaria. Somos un oasis de bienestar diseñado para ofrecerte una experiencia única de descanso, renovación y cuidado personal.</p>
+        <p>Nuestro equipo de especialistas certificadas está comprometido con tu bienestar, usando productos de alta calidad y tecnología de vanguardia para resultados reales y duraderos.</p>
+        <ul class="nosotros-features">
+          <li><i class="fa-solid fa-check"></i> Diagnóstico personalizado en cada visita</li>
+          <li><i class="fa-solid fa-check"></i> Cavitación, RF, Presoterapia, EMSCULPT</li>
+          <li><i class="fa-solid fa-check"></i> Faciales con dermapen y tecnología antiedad</li>
+          <li><i class="fa-solid fa-check"></i> Masajes terapéuticos y de bienestar</li>
+          <li><i class="fa-solid fa-check"></i> Depilación profesional en todas las zonas</li>
+          <li><i class="fa-solid fa-check"></i> Ambiente cálido, elegante y profesional</li>
+        </ul>
+        <a href="#contacto" class="btn-primary">
+          Escríbenos <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIOS ════════════════════════════════════════ -->
+  <section class="testimonios section" id="testimonios">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Lo que dicen nuestras clientas</p>
+        <h2 class="section-title">Experiencias <em>reales</em></h2>
+      </div>
+      <div class="testimonios-track" id="testimoniasTrack">
+
+        <div class="testi-card">
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"El masaje relajante fue espectacular, salí completamente renovada. El ambiente es muy elegante y las chicas super profesionales. ¡Precio muy accesible!"</p>
+          <div class="testi-author"><div class="testi-avatar">V</div><div><strong>Valeria M.</strong><small>Masaje Relajante</small></div></div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"Me hice el reductivo de abdomen y los resultados son increíbles. Llevo 5 sesiones y ya noto una gran diferencia. Totalmente recomendada Gelesha."</p>
+          <div class="testi-author"><div class="testi-avatar">S</div><div><strong>Sofía R.</strong><small>Reductivo Abdomen</small></div></div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"La limpieza facial profunda dejó mi piel luminosa y fresca. Me explicaron todo el proceso y me recomendaron el plan perfecto para mi tipo de piel."</p>
+          <div class="testi-author"><div class="testi-avatar">A</div><div><strong>Andrea L.</strong><small>Limpieza Facial Profunda</small></div></div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+          <p>"Fui por la depilación bikini brasileño y quedé muy contenta. Fue rápido, profesional y sin dolor. El lugar está muy limpio y bien equipado."</p>
+          <div class="testi-author"><div class="testi-avatar">C</div><div><strong>Camila F.</strong><small>Depilación Bikini Brasileño</small></div></div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"El dermapen cambió mi piel completamente. Tenía manchas y cicatrices de acné y después de 3 sesiones casi ni se notan. Excelente inversión."</p>
+          <div class="testi-author"><div class="testi-avatar">M</div><div><strong>Mariana G.</strong><small>Dermapen</small></div></div>
+        </div>
+
+      </div>
+      <div class="testi-controls">
+        <button class="testi-btn" id="testimPrev"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="testi-dots" id="testimDots"></div>
+        <button class="testi-btn" id="testimNext"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA BANNER ════════════════════════════════════════ -->
+  <section class="cta-banner">
+    <div class="cta-inner">
+      <i class="fa-solid fa-spa cta-icon"></i>
+      <h2>¿Lista para transformarte?</h2>
+      <p>Escríbenos y te ayudamos a elegir el tratamiento ideal para ti.</p>
+      <a href="#contacto" class="btn-primary-dark">
+        <i class="fa-brands fa-whatsapp"></i> Contáctanos ahora
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ CONTACTO ══════════════════════════════════════════ -->
+  <section class="contacto section" id="contacto">
+    <div class="container contacto-inner">
+      <div class="contacto-info">
+        <p class="section-eyebrow">Contáctanos</p>
+        <h2 class="section-title">¿Tienes<br /><em>preguntas?</em></h2>
+        <p>Estamos aquí para asesorarte y ayudarte a encontrar el tratamiento perfecto para ti.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <div><strong>WhatsApp</strong><span>Escríbenos directo</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fa-brands fa-instagram"></i></div>
+            <div><strong>Instagram</strong><span>Síguenos en redes</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fa-solid fa-clock"></i></div>
+            <div><strong>Horarios</strong><span>Lunes a Sábado · 9:00 – 19:00</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div><strong>Ubicación</strong><span>México</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="contacto-form">
+        <div class="form-header">
+          <h3>Envíanos un mensaje</h3>
+          <p>Te responderemos lo antes posible.</p>
+        </div>
+        <form id="reservaForm" novalidate>
+          <div class="form-group">
+            <label for="nombre">Nombre completo *</label>
+            <input type="text" id="nombre" placeholder="Ej. María García" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telefono">Teléfono *</label>
+              <input type="tel" id="telefono" placeholder="+52 (000) 000-0000" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" placeholder="tu@correo.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="servicio">Servicio de interés *</label>
+            <select id="servicio" required>
+              <option value="" disabled selected>Selecciona un servicio</option>
+              <optgroup label="💆 Masajes">
+                <option>Masaje Relajante</option>
+                <option>Masaje Tejido Profundo</option>
+                <option>Masaje Piedras Calientes</option>
+                <option>Masaje Deportivo</option>
+                <option>Drenaje Linfático Manual</option>
+                <option>Masaje Sueco</option>
+                <option>Masaje Chakras</option>
+                <option>Masaje Ayurveda</option>
+                <option>Masaje Shantala</option>
+                <option>Masaje Terapéutico</option>
+                <option>Masaje Piernas Cansadas</option>
+                <option>Yoga Facial</option>
+              </optgroup>
+              <optgroup label="✨ Faciales">
+                <option>Limpieza Facial Profunda</option>
+                <option>Facial Antiedad</option>
+                <option>Control Acné</option>
+                <option>Facial Descongestivo</option>
+                <option>Facial Despigmentante</option>
+                <option>Facial Hidratante</option>
+                <option>Dermapen</option>
+                <option>Hidralips</option>
+              </optgroup>
+              <optgroup label="⚡ Aparatología y Reductivos">
+                <option>Cavitación</option>
+                <option>EMSCULPT</option>
+                <option>Radio + Metalo o Madero</option>
+                <option>Presoterapia</option>
+                <option>Gimnasia Pasiva</option>
+                <option>Reductivo Abdomen</option>
+                <option>Reductivo Piernas</option>
+                <option>Reductivo Brazos</option>
+                <option>Reductivo Papada</option>
+                <option>Levantamiento de Glúteos</option>
+                <option>Criolipólisis Abdomen</option>
+                <option>Criolipólisis Piernas</option>
+                <option>Criolipólisis Brazos</option>
+                <option>Reafirmante Abdomen</option>
+                <option>Reafirmante Piernas</option>
+                <option>Anticelulitis Piernas</option>
+              </optgroup>
+              <optgroup label="🌿 Depilación">
+                <option>Depilación Pierna Completa</option>
+                <option>Depilación Bikini Brasileño</option>
+                <option>Depilación Media Pierna</option>
+                <option>Depilación Muslo</option>
+                <option>Depilación Brazo</option>
+                <option>Depilación Axilas</option>
+                <option>Depilación Cara Completa</option>
+                <option>Depilación Cuerpo Completo</option>
+                <option>Depilación Abdomen</option>
+                <option>Depilación Espalda</option>
+              </optgroup>
+              <optgroup label="💎 Otros">
+                <option>Carboxiterapia</option>
+                <option>Reflexología de Pies / Manos</option>
+                <option>Exfoliación de Pies</option>
+                <option>Manos y Pies de Seda</option>
+                <option>Otro / Consulta general</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje (opcional)</label>
+            <textarea id="mensaje" rows="4" placeholder="Cuéntanos sobre tu consulta, dudas o lo que necesitas…"></textarea>
+          </div>
+          <button type="submit" class="btn-primary btn-full">
+            Enviar mensaje <i class="fa-solid fa-paper-plane"></i>
+          </button>
+          <p class="form-note"><i class="fa-solid fa-lock"></i> Tu información es 100% confidencial.</p>
+          <div id="formMsg" class="form-msg" hidden></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="GELESHA" class="footer-logo" />
+        <p>Spa · Estética Corporal y Facial. Un oasis de bienestar donde la belleza y la relajación se unen en perfecta armonía.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Masajes</h4>
+        <ul>
+          <li><a href="#catalogo">Relajante</a></li>
+          <li><a href="#catalogo">Tejido Profundo</a></li>
+          <li><a href="#catalogo">Piedras Calientes</a></li>
+          <li><a href="#catalogo">Drenaje Linfático</a></li>
+          <li><a href="#catalogo">Ayurveda</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Faciales</h4>
+        <ul>
+          <li><a href="#catalogo">Limpieza Profunda</a></li>
+          <li><a href="#catalogo">Antiedad</a></li>
+          <li><a href="#catalogo">Control Acné</a></li>
+          <li><a href="#catalogo">Dermapen</a></li>
+          <li><a href="#catalogo">Despigmentante</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Más servicios</h4>
+        <ul>
+          <li><a href="#catalogo">Cavitación</a></li>
+          <li><a href="#catalogo">Reductivos</a></li>
+          <li><a href="#catalogo">Depilación</a></li>
+          <li><a href="#nosotros">Sobre nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 GELESHA — Spa · Estética Corporal y Facial</p>
+      <p>Hecho con <i class="fa-solid fa-heart"></i> para tu bienestar</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/521000000000" class="wa-float" aria-label="WhatsApp" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
