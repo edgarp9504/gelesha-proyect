@@ -114,8 +114,14 @@ ul   { list-style: none; }
 .hero--with-media .hero-media {
   position: absolute; inset: 0; z-index: 0;
 }
+.hero-bg-video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
 .hero-bg-img {
   width: 100%; height: 100%; object-fit: cover;
+}
+.hero-bg-fallback {
+  position: absolute; inset: 0;
 }
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
@@ -313,6 +319,19 @@ ul   { list-style: none; }
 }
 .confianza-card h3 { font-family: var(--font-serif); font-size: 1.15rem; color: var(--purple-deep); margin-bottom: 10px; }
 .confianza-card p { font-size: .85rem; color: var(--text-light); line-height: 1.65; }
+
+/* ══════════════════════════════════════════════════════════
+   VIDEO DE TRABAJO
+══════════════════════════════════════════════════════════ */
+.video-trabajo { background: var(--off-white); }
+.video-wrap {
+  max-width: 900px; margin: 0 auto;
+  border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.video-wrap video {
+  width: 100%; display: block; vertical-align: top;
+}
 
 /* ══════════════════════════════════════════════════════════
    GALERÍA
