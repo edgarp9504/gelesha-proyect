@@ -33,7 +33,10 @@
   </header>
 
   <!-- ══ HERO ══════════════════════════════════════════════════ -->
-  <section class="hero" id="hero">
+  <section class="hero hero--with-media" id="hero">
+    <div class="hero-media">
+      <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1920&q=85" alt="Spa GELESHA - ambiente de relajación" class="hero-bg-img" loading="eager" />
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="hero-eyebrow">🌿 Spa · Estética Corporal y Facial 🌸</p>
@@ -88,6 +91,38 @@
     </div>
   </section>
 
+  <!-- ══ POR QUÉ ELEGIRNOS (Confianza) ════════════════════════════ -->
+  <section class="confianza section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Tu bienestar es nuestra prioridad</p>
+        <h2 class="section-title">¿Por qué <em>confiar en GELESHA</em>?</h2>
+      </div>
+      <div class="confianza-grid">
+        <div class="confianza-card">
+          <div class="confianza-icon"><i class="fa-solid fa-certificate"></i></div>
+          <h3>Profesionales certificadas</h3>
+          <p>Nuestro equipo cuenta con formación especializada y experiencia en estética corporal y facial.</p>
+        </div>
+        <div class="confianza-card">
+          <div class="confianza-icon"><i class="fa-solid fa-bottle-droplet"></i></div>
+          <h3>Productos premium</h3>
+          <p>Utilizamos marcas certificadas y de alta calidad para garantizar resultados seguros y duraderos.</p>
+        </div>
+        <div class="confianza-card">
+          <div class="confianza-icon"><i class="fa-solid fa-spa"></i></div>
+          <h3>Ambiente relajante</h3>
+          <p>Un espacio diseñado para que te sientas cómoda y disfrutes cada momento de tu tratamiento.</p>
+        </div>
+        <div class="confianza-card">
+          <div class="confianza-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <h3>Atención personalizada</h3>
+          <p>Evaluamos tu caso y te recomendamos el tratamiento ideal para tus necesidades y objetivos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ CATEGORÍAS DESTACADAS ══════════════════════════════════ -->
   <section class="servicios section" id="servicios">
     <div class="container">
@@ -98,39 +133,59 @@
       </div>
       <div class="categorias-grid">
 
-        <a href="servicios.html?cat=Masaje" class="cat-card" data-delay="0">
-          <div class="cat-icon"><i class="fa-solid fa-hand-dots"></i></div>
-          <h3>Masajes</h3>
-          <p>Relajantes, terapéuticos, drenaje linfático, piedras calientes, ayurveda y más. Desde $500.</p>
-          <span class="cat-link">Ver masajes <i class="fa-solid fa-arrow-right"></i></span>
+        <a href="servicios.html?cat=Masaje" class="cat-card cat-card--img" data-delay="0">
+          <div class="cat-card-img">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Masajes relajantes" loading="lazy" />
+          </div>
+          <div class="cat-card-body">
+            <h3>Masajes</h3>
+            <p>Relajantes, terapéuticos, drenaje linfático, piedras calientes, ayurveda y más. Desde $500.</p>
+            <span class="cat-link">Ver masajes <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
         </a>
 
-        <a href="servicios.html?cat=Facial" class="cat-card" data-delay="100">
-          <div class="cat-icon"><i class="fa-solid fa-face-smile-beam"></i></div>
-          <h3>Faciales</h3>
-          <p>Limpieza profunda, antiedad, control acné, dermapen, hidratante y más. Desde $700.</p>
-          <span class="cat-link">Ver faciales <i class="fa-solid fa-arrow-right"></i></span>
+        <a href="servicios.html?cat=Facial" class="cat-card cat-card--img" data-delay="100">
+          <div class="cat-card-img">
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt="Tratamientos faciales" loading="lazy" />
+          </div>
+          <div class="cat-card-body">
+            <h3>Faciales</h3>
+            <p>Limpieza profunda, antiedad, control acné, dermapen, hidratante y más. Desde $700.</p>
+            <span class="cat-link">Ver faciales <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
         </a>
 
-        <a href="servicios.html?cat=Aparatologia" class="cat-card" data-delay="200">
-          <div class="cat-icon"><i class="fa-solid fa-bolt"></i></div>
-          <h3>Aparatología</h3>
-          <p>Cavitación, EMSCULPT, radiofrecuencia, presoterapia, gimnasia pasiva. Desde $500.</p>
-          <span class="cat-link">Ver aparatología <i class="fa-solid fa-arrow-right"></i></span>
+        <a href="servicios.html?cat=Aparatologia" class="cat-card cat-card--img" data-delay="200">
+          <div class="cat-card-img">
+            <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80" alt="Aparatología estética" loading="lazy" />
+          </div>
+          <div class="cat-card-body">
+            <h3>Aparatología</h3>
+            <p>Cavitación, EMSCULPT, radiofrecuencia, presoterapia, gimnasia pasiva. Desde $500.</p>
+            <span class="cat-link">Ver aparatología <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
         </a>
 
-        <a href="servicios.html?cat=Reductivo" class="cat-card" data-delay="300">
-          <div class="cat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-          <h3>Reductivos</h3>
-          <p>Abdomen, piernas, brazos, glúteos, criolipólisis, anticelulitis. Desde $500.</p>
-          <span class="cat-link">Ver reductivos <i class="fa-solid fa-arrow-right"></i></span>
+        <a href="servicios.html?cat=Reductivo" class="cat-card cat-card--img" data-delay="300">
+          <div class="cat-card-img">
+            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80" alt="Tratamientos reductivos" loading="lazy" />
+          </div>
+          <div class="cat-card-body">
+            <h3>Reductivos</h3>
+            <p>Abdomen, piernas, brazos, glúteos, criolipólisis, anticelulitis. Desde $500.</p>
+            <span class="cat-link">Ver reductivos <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
         </a>
 
-        <a href="servicios.html?cat=Depilacion" class="cat-card" data-delay="400">
-          <div class="cat-icon"><i class="fa-solid fa-leaf"></i></div>
-          <h3>Depilación</h3>
-          <p>Pierna completa, bikini brasileño, cara, espalda, axilas, cuerpo completo. Desde $250.</p>
-          <span class="cat-link">Ver depilación <i class="fa-solid fa-arrow-right"></i></span>
+        <a href="servicios.html?cat=Depilacion" class="cat-card cat-card--img" data-delay="400">
+          <div class="cat-card-img">
+            <img src="https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=600&q=80" alt="Depilación profesional" loading="lazy" />
+          </div>
+          <div class="cat-card-body">
+            <h3>Depilación</h3>
+            <p>Pierna completa, bikini brasileño, cara, espalda, axilas, cuerpo completo. Desde $250.</p>
+            <span class="cat-link">Ver depilación <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
         </a>
 
         <a href="servicios.html" class="cat-card cat-card--cta" data-delay="500">
@@ -140,6 +195,34 @@
           <span class="btn-primary">Buscar servicio</span>
         </a>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ GALERÍA / NUESTRO ESPACIO ═══════════════════════════════ -->
+  <section class="galeria section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Conoce nuestro espacio</p>
+        <h2 class="section-title">Un ambiente pensado para <em>tu bienestar</em></h2>
+        <p class="section-desc">Instalaciones modernas, limpias y acogedoras donde cada detalle está pensado para tu comodidad.</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item galeria-item--large">
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80" alt="Sala de masajes GELESHA" loading="lazy" />
+        </div>
+        <div class="galeria-item">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt="Tratamiento facial" loading="lazy" />
+        </div>
+        <div class="galeria-item">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80" alt="Ambiente relajante" loading="lazy" />
+        </div>
+        <div class="galeria-item">
+          <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80" alt="Productos de calidad" loading="lazy" />
+        </div>
+        <div class="galeria-item">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80" alt="Spa wellness" loading="lazy" />
+        </div>
       </div>
     </div>
   </section>
@@ -156,31 +239,46 @@
         <div class="testi-card">
           <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p>"El masaje relajante fue espectacular, salí completamente renovada. El ambiente es muy elegante y las chicas super profesionales. ¡Precio muy accesible!"</p>
-          <div class="testi-author"><div class="testi-avatar">V</div><div><strong>Valeria M.</strong><small>Masaje Relajante</small></div></div>
+          <div class="testi-author">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Valeria" class="testi-photo" loading="lazy" />
+            <div><strong>Valeria M.</strong><small>Masaje Relajante</small></div>
+          </div>
         </div>
 
         <div class="testi-card">
           <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p>"Me hice el reductivo de abdomen y los resultados son increíbles. Llevo 5 sesiones y ya noto una gran diferencia. Totalmente recomendada Gelesha."</p>
-          <div class="testi-author"><div class="testi-avatar">S</div><div><strong>Sofía R.</strong><small>Reductivo Abdomen</small></div></div>
+          <div class="testi-author">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Sofía" class="testi-photo" loading="lazy" />
+            <div><strong>Sofía R.</strong><small>Reductivo Abdomen</small></div>
+          </div>
         </div>
 
         <div class="testi-card">
           <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p>"La limpieza facial profunda dejó mi piel luminosa y fresca. Me explicaron todo el proceso y me recomendaron el plan perfecto para mi tipo de piel."</p>
-          <div class="testi-author"><div class="testi-avatar">A</div><div><strong>Andrea L.</strong><small>Limpieza Facial Profunda</small></div></div>
+          <div class="testi-author">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Andrea" class="testi-photo" loading="lazy" />
+            <div><strong>Andrea L.</strong><small>Limpieza Facial Profunda</small></div>
+          </div>
         </div>
 
         <div class="testi-card">
           <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
           <p>"Fui por la depilación bikini brasileño y quedé muy contenta. Fue rápido, profesional y sin dolor. El lugar está muy limpio y bien equipado."</p>
-          <div class="testi-author"><div class="testi-avatar">C</div><div><strong>Camila F.</strong><small>Depilación Bikini Brasileño</small></div></div>
+          <div class="testi-author">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop" alt="Camila" class="testi-photo" loading="lazy" />
+            <div><strong>Camila F.</strong><small>Depilación Bikini Brasileño</small></div>
+          </div>
         </div>
 
         <div class="testi-card">
           <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p>"El dermapen cambió mi piel completamente. Tenía manchas y cicatrices de acné y después de 3 sesiones casi ni se notan. Excelente inversión."</p>
-          <div class="testi-author"><div class="testi-avatar">M</div><div><strong>Mariana G.</strong><small>Dermapen</small></div></div>
+          <div class="testi-author">
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=100&fit=crop" alt="Mariana" class="testi-photo" loading="lazy" />
+            <div><strong>Mariana G.</strong><small>Dermapen</small></div>
+          </div>
         </div>
 
       </div>
@@ -193,12 +291,13 @@
   </section>
 
   <!-- ══ CTA BANNER ════════════════════════════════════════════ -->
-  <section class="cta-banner">
+  <section class="cta-banner cta-banner--img">
+    <div class="cta-banner-bg" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1920&q=80');"></div>
     <div class="cta-inner">
       <i class="fa-solid fa-spa cta-icon"></i>
       <h2>¿Lista para transformarte?</h2>
-      <p>Escríbenos y te ayudamos a elegir el tratamiento ideal para ti.</p>
-      <a href="contacto.html" class="btn-primary-dark">
+      <p>Escríbenos por WhatsApp y te ayudamos a elegir el tratamiento ideal para ti. Sin compromiso.</p>
+      <a href="https://wa.me/529987388389?text=Hola%20GELESHA%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita%20o%20informaci%C3%B3n%20sobre%20sus%20servicios" target="_blank" rel="noopener" class="btn-primary-dark">
         <i class="fa-brands fa-whatsapp"></i> Contáctanos ahora
       </a>
     </div>
