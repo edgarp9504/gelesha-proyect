@@ -3,83 +3,17 @@
    Módulos: Auth · Dashboard · Agenda · Ventas · Reportes
 ══════════════════════════════════════════════════════════ */
 
-/* ── INICIALIZACIÓN DE AUTH ─────────────────────────────── */
+/* ── INICIALIZACIÓN (sin login — acceso directo) ─────────── */
 async function initAuth() {
-  await ENV.load();   // Lee .env
-
   const loginScreen = document.getElementById('loginScreen');
   const adminWrap   = document.getElementById('adminMain');
   const sidebar     = document.getElementById('sidebar');
 
-  function showPanel() {
-    loginScreen.classList.add('hidden');
-    adminWrap.style.visibility  = 'visible';
-    sidebar.style.visibility    = 'visible';
-    renderDashboard();
-  }
-
-  function showLogin() {
-    loginScreen.classList.remove('hidden');
-    adminWrap.style.visibility  = 'hidden';
-    sidebar.style.visibility    = 'hidden';
-  }
-
-  // ¿Ya tiene sesión válida?
-  if (AUTH.isLoggedIn()) {
-    showPanel();
-  } else {
-    showLogin();
-  }
-
-  // Formulario de login
-  const form     = document.getElementById('loginForm');
-  const errorEl  = document.getElementById('loginError');
-  const loginBtn = document.getElementById('loginBtn');
-
-  form?.addEventListener('submit', async e => {
-    e.preventDefault();
-    const user = document.getElementById('loginUser').value.trim();
-    const pass = document.getElementById('loginPass').value;
-
-    loginBtn.disabled = true;
-    loginBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Verificando…';
-
-    // Pequeño delay para evitar brute-force visual
-    await new Promise(r => setTimeout(r, 600));
-
-    if (AUTH.attempt(user, pass)) {
-      errorEl.classList.remove('show');
-      showPanel();
-    } else {
-      errorEl.classList.add('show');
-      form.classList.add('shake');
-      setTimeout(() => form.classList.remove('shake'), 450);
-      document.getElementById('loginPass').value = '';
-      document.getElementById('loginPass').focus();
-    }
-
-    loginBtn.disabled = false;
-    loginBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Entrar al panel';
-  });
-
-  // Toggle mostrar contraseña
-  document.getElementById('togglePass')?.addEventListener('click', () => {
-    const input = document.getElementById('loginPass');
-    const icon  = document.getElementById('togglePassIcon');
-    const show  = input.type === 'password';
-    input.type  = show ? 'text' : 'password';
-    icon.className = show ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
-  });
-
-  // Botón cerrar sesión
-  document.getElementById('btnLogout')?.addEventListener('click', () => {
-    if (confirm('¿Cerrar sesión del panel admin?')) {
-      AUTH.logout();
-      showLogin();
-      document.getElementById('loginUser').value = '';
-      document.getElementById('loginPass').value = '';
-    }
-  });
+  // Acceso directo al panel, sin autenticación
+  loginScreen.classList.add('hidden');
+  adminWrap.style.visibility  = 'visible';
+  sidebar.style.visibility    = 'visible';
+  renderDashboard();
 }
 
 /* ── ESTADO GLOBAL ──────────────────────────────────────── */
