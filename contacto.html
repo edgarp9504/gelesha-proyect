@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto — GELESHA Spa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo-link">
+        <img src="images/logo.png" alt="GELESHA" class="logo-img" />
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html" class="active">Contacto</a>
+        
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <p class="section-eyebrow">Estamos aquí para ti</p>
+      <h1 class="section-title">¿Tienes<br /><em>preguntas?</em></h1>
+      <p>Contáctanos y te asesoramos con gusto.</p>
+    </div>
+  </section>
+
+  <section class="contacto section">
+    <div class="container contacto-inner">
+      <div class="contacto-info">
+        <p class="section-eyebrow">Información</p>
+        <h2 class="section-title">Escríbenos<br /><em>cuando quieras</em></h2>
+        <p>Nuestro equipo está listo para asesorarte y ayudarte a encontrar el tratamiento perfecto.</p>
+        <div class="contact-items">
+          <a href="https://wa.me/529987388389" target="_blank" class="contact-item contact-item--link">
+            <div class="ci-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <div><strong>WhatsApp</strong><span>+52 998 738 8389</span></div>
+          </a>
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fa-brands fa-instagram"></i></div>
+            <div><strong>Instagram</strong><span>@gelesha_spa</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fa-solid fa-clock"></i></div>
+            <div><strong>Horarios</strong><span>Lunes a Sábado · 9:00 – 19:00</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div><strong>Ubicación</strong><span>México</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="contacto-form">
+        <div class="form-header">
+          <h3>Envíanos un mensaje</h3>
+          <p>Te responderemos lo antes posible.</p>
+        </div>
+        <div id="formSuccess" class="form-success" hidden>
+          <i class="fa-solid fa-circle-check"></i>
+          <h4>¡Mensaje enviado!</h4>
+          <p>Te contactaremos pronto. ¡Gracias por escribirnos!</p>
+        </div>
+        <form id="reservaForm" novalidate>
+          <div class="form-group">
+            <label for="nombre">Nombre completo *</label>
+            <input type="text" id="nombre" placeholder="Ej. María García" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telefono">Teléfono *</label>
+              <input type="tel" id="telefono" placeholder="+52 (000) 000-0000" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" placeholder="tu@correo.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="servicio">Servicio de interés *</label>
+            <select id="servicio" required>
+              <option value="" disabled selected>Selecciona un servicio</option>
+              <optgroup label="💆 Masajes">
+                <option>Masaje Relajante</option><option>Masaje Tejido Profundo</option>
+                <option>Masaje Piedras Calientes</option><option>Masaje Deportivo</option>
+                <option>Drenaje Linfático Manual</option><option>Masaje Sueco</option>
+                <option>Masaje Chakras</option><option>Masaje Ayurveda</option>
+                <option>Masaje Shantala</option><option>Masaje Piernas Cansadas</option>
+              </optgroup>
+              <optgroup label="✨ Faciales">
+                <option>Limpieza Facial Profunda</option><option>Facial Antiedad</option>
+                <option>Control Acné</option><option>Facial Descongestivo</option>
+                <option>Facial Despigmentante</option><option>Facial Hidratante</option>
+                <option>Dermapen</option><option>Hidralips</option>
+              </optgroup>
+              <optgroup label="⚡ Aparatología">
+                <option>Cavitación</option><option>EMSCULPT</option>
+                <option>Radio + Metalo o Madero</option><option>Presoterapia</option>
+                <option>Gimnasia Pasiva</option><option>Carboxiterapia</option>
+              </optgroup>
+              <optgroup label="🌿 Reductivos">
+                <option>Reductivo Abdomen</option><option>Reductivo Piernas</option>
+                <option>Reductivo Brazos</option><option>Levantamiento de Glúteos</option>
+                <option>Criolipólisis Abdomen</option><option>Criolipólisis Piernas</option>
+              </optgroup>
+              <optgroup label="🍃 Depilación">
+                <option>Depilación Pierna Completa</option><option>Depilación Bikini Brasileño</option>
+                <option>Depilación Axilas</option><option>Depilación Cara Completa</option>
+                <option>Depilación Cuerpo Completo</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fecha">Fecha preferida</label>
+            <input type="date" id="fecha" />
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje adicional</label>
+            <textarea id="mensaje" rows="3" placeholder="¿Alguna duda o indicación especial?"></textarea>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <i class="fa-solid fa-paper-plane"></i> Enviar mensaje
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="GELESHA" class="footer-logo" />
+        <p>Spa · Estética Corporal y Facial</p>
+        <p class="footer-tagline">Tu bienestar, nuestro compromiso.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Menú</h4>
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-nav">
+        <h4>Categorías</h4>
+        <a href="servicios.html?cat=Masaje">Masajes</a>
+        <a href="servicios.html?cat=Facial">Faciales</a>
+        <a href="servicios.html?cat=Reductivo">Reductivos</a>
+        <a href="servicios.html?cat=Depilacion">Depilación</a>
+      </div>
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <p><i class="fa-brands fa-whatsapp"></i> WhatsApp</p>
+        <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+        <p><i class="fa-solid fa-clock"></i> Lun–Sáb · 9:00–19:00</p>
+        <p><i class="fa-solid fa-location-dot"></i> México</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 GELESHA · Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/529987388389" target="_blank" rel="noopener" class="whatsapp-float">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+  <script src="js/contacto.js"></script>
+</body>
+</html>

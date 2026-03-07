@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Admin — GELESHA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/admin.css" />
+  <style>
+    /* ── LOGIN SCREEN ──────────────────────────────────────── */
+    #loginScreen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #1a0a2e 0%, #2D0845 50%, #4a1060 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 24px;
+    }
+    #loginScreen.hidden { display: none; }
+
+    .login-box {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.4);
+      text-align: center;
+    }
+    .login-logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      margin-bottom: 16px;
+    }
+    .login-box h1 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #2D0845;
+      margin-bottom: 4px;
+    }
+    .login-box p {
+      font-size: .83rem;
+      color: #9e9790;
+      margin-bottom: 28px;
+    }
+    .login-field {
+      position: relative;
+      margin-bottom: 14px;
+      text-align: left;
+    }
+    .login-field label {
+      display: block;
+      font-size: .75rem;
+      font-weight: 600;
+      color: #6e6860;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 6px;
+    }
+    .login-field input {
+      width: 100%;
+      padding: 12px 42px 12px 14px;
+      border: 1.5px solid #e8e4de;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: .9rem;
+      color: #373435;
+      background: #faf9f7;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .login-field input:focus {
+      border-color: #D08C37;
+      box-shadow: 0 0 0 3px rgba(208,140,55,.15);
+      background: #fff;
+    }
+    .login-field .toggle-pass {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      background: none;
+      border: none;
+      color: #9e9790;
+      cursor: pointer;
+      font-size: .95rem;
+      padding: 0;
+    }
+    .login-field .toggle-pass:hover { color: #D08C37; }
+
+    .login-btn {
+      width: 100%;
+      padding: 13px;
+      background: #D08C37;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background .2s, transform .15s;
+    }
+    .login-btn:hover { background: #b07020; }
+    .login-btn:active { transform: scale(.98); }
+    .login-btn:disabled { background: #d5cfc8; cursor: not-allowed; }
+
+    .login-error {
+      display: none;
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: rgba(192,48,48,.08);
+      border: 1px solid rgba(192,48,48,.2);
+      border-radius: 8px;
+      color: #c03030;
+      font-size: .82rem;
+      text-align: left;
+    }
+    .login-error.show { display: flex; align-items: center; gap: 8px; }
+
+    .login-footer {
+      margin-top: 20px;
+      font-size: .75rem;
+      color: #c8c4be;
+    }
+
+    /* Shake animation */
+    @keyframes shake {
+      0%,100%{ transform:translateX(0); }
+      20%    { transform:translateX(-8px); }
+      40%    { transform:translateX(8px); }
+      60%    { transform:translateX(-6px); }
+      80%    { transform:translateX(6px); }
+    }
+    .shake { animation: shake .4s ease; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ LOGIN SCREEN ══════════════════════════════════════ -->
+  <div id="loginScreen">
+    <div class="login-box">
+      <img src="images/logo.png" alt="GELESHA" class="login-logo" />
+      <h1>Panel Administrativo</h1>
+      <p>Acceso exclusivo para personal GELESHA</p>
+
+      <form id="loginForm" novalidate>
+        <div class="login-field">
+          <label for="loginUser">Usuario</label>
+          <input type="text" id="loginUser" autocomplete="username"
+                 placeholder="Ingresa tu usuario" />
+        </div>
+        <div class="login-field">
+          <label for="loginPass">Contraseña</label>
+          <input type="password" id="loginPass" autocomplete="current-password"
+                 placeholder="••••••••••" />
+          <button type="button" class="toggle-pass" id="togglePass" aria-label="Ver contraseña">
+            <i class="fa-solid fa-eye" id="togglePassIcon"></i>
+          </button>
+        </div>
+
+        <button type="submit" class="login-btn" id="loginBtn">
+          <i class="fa-solid fa-right-to-bracket"></i> Entrar al panel
+        </button>
+
+        <div class="login-error" id="loginError">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <span>Usuario o contraseña incorrectos.</span>
+        </div>
+      </form>
+
+      <p class="login-footer">🔒 Acceso restringido · GELESHA Spa 2025</p>
+    </div>
+  </div>
+
+  <!-- ═══ SIDEBAR ════════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar" style="visibility:hidden">
+    <div class="sidebar-logo">
+      <img src="images/logo.png" alt="GELESHA" />
+      <div>
+        <span>Panel Admin</span>
+        <small style="display:block;color:rgba(255,255,255,.35);font-size:.65rem;letter-spacing:.03em">GELESHA Spa</small>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="sn-link active" data-view="dashboard">
+        <i class="fa-solid fa-chart-pie"></i> Dashboard
+      </a>
+      <a href="#" class="sn-link" data-view="agenda">
+        <i class="fa-solid fa-calendar-days"></i> Agenda / Citas
+      </a>
+      <a href="#" class="sn-link" data-view="ventas">
+        <i class="fa-solid fa-cash-register"></i> Ventas / Cobros
+      </a>
+      <a href="#" class="sn-link" data-view="reportes">
+        <i class="fa-solid fa-chart-line"></i> Reportes
+      </a>
+      <div class="sn-divider"></div>
+      <a href="index.html" class="sn-link sn-link--back">
+        <i class="fa-solid fa-arrow-left"></i> Ver sitio web
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <i class="fa-solid fa-store"></i> &nbsp;GELESHA Spa · 2025
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN ══════════════════════════════════════════════ -->
+  <div class="admin-main" id="adminMain" style="visibility:hidden">
+
+    <!-- TOPBAR -->
+    <header class="admin-topbar">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Menú">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <h1 class="topbar-title" id="topbarTitle">Dashboard</h1>
+      <div class="topbar-right">
+        <span class="topbar-date" id="topbarDate"></span>
+        <button class="btn-logout" id="btnLogout" title="Cerrar sesión">
+          <i class="fa-solid fa-right-from-bracket"></i> Salir
+        </button>
+      </div>
+    </header>
+
+    <!-- ─── VIEW: DASHBOARD ─────────────────────────────── -->
+    <section class="view active" id="view-dashboard">
+      <div class="kpi-grid">
+        <div class="kpi-card kpi--gold">
+          <div class="kpi-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+          <div class="kpi-info">
+            <p>Ventas del mes</p>
+            <h2 id="kpiVentasMes">$0</h2>
+          </div>
+        </div>
+        <div class="kpi-card kpi--purple">
+          <div class="kpi-icon"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="kpi-info">
+            <p>Citas del mes</p>
+            <h2 id="kpiCitasMes">0</h2>
+          </div>
+        </div>
+        <div class="kpi-card kpi--teal">
+          <div class="kpi-icon"><i class="fa-solid fa-users"></i></div>
+          <div class="kpi-info">
+            <p>Clientas únicas</p>
+            <h2 id="kpiClientas">0</h2>
+          </div>
+        </div>
+        <div class="kpi-card kpi--rose">
+          <div class="kpi-icon"><i class="fa-solid fa-receipt"></i></div>
+          <div class="kpi-info">
+            <p>Ticket promedio</p>
+            <h2 id="kpiTicket">$0</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Ventas últimos 7 días</h3>
+          <div style="height:250px"><canvas id="chartVentas"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Servicios más vendidos</h3>
+          <div style="height:250px"><canvas id="chartServicios"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Citas próximas -->
+      <div class="section-card">
+        <div class="sc-header">
+          <h3><i class="fa-solid fa-clock"></i> Próximas citas</h3>
+          <button class="btn-sm btn-gold" onclick="switchView('agenda')">Ver agenda completa</button>
+        </div>
+        <div id="proxCitasTable"></div>
+      </div>
+
+      <!-- Accesos rápidos -->
+      <div class="quick-actions">
+        <button class="qa-btn" onclick="switchView('agenda'); setTimeout(openNuevaCita,200)">
+          <i class="fa-solid fa-calendar-plus"></i>
+          <span>Nueva Cita</span>
+        </button>
+        <button class="qa-btn" onclick="switchView('ventas'); setTimeout(openNuevaVenta,200)">
+          <i class="fa-solid fa-circle-dollar-to-slot"></i>
+          <span>Registrar Venta</span>
+        </button>
+        <button class="qa-btn" onclick="switchView('reportes')">
+          <i class="fa-solid fa-file-chart-column"></i>
+          <span>Ver Reportes</span>
+        </button>
+        <a class="qa-btn" href="servicios.html" target="_blank">
+          <i class="fa-solid fa-spa"></i>
+          <span>Ver Catálogo</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ─── VIEW: AGENDA ─────────────────────────────────── -->
+    <section class="view" id="view-agenda">
+      <div class="view-header">
+        <h2><i class="fa-solid fa-calendar-days"></i> Agenda / Citas</h2>
+        <button class="btn-gold" id="btnNuevaCita">
+          <i class="fa-solid fa-plus"></i> Nueva cita
+        </button>
+      </div>
+
+      <!-- Filtros agenda -->
+      <div class="filter-bar">
+        <input type="text" id="agendaBuscar" class="filter-input" placeholder="🔍 Buscar clienta, teléfono…" style="flex:1;min-width:180px" />
+        <input type="date" id="agendaFecha" class="filter-input" />
+        <select id="agendaEstado" class="filter-input">
+          <option value="">Todos los estados</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="confirmada">Confirmada</option>
+          <option value="completada">Completada</option>
+          <option value="cancelada">Cancelada</option>
+        </select>
+        <button class="btn-outline" id="agendaFiltrar">
+          <i class="fa-solid fa-filter"></i> Filtrar
+        </button>
+        <button class="btn-outline" id="agendaLimpiar">
+          <i class="fa-solid fa-xmark"></i> Limpiar
+        </button>
+      </div>
+
+      <div class="section-card">
+        <div class="table-wrap">
+          <table class="admin-table" id="tablaCitas">
+            <thead>
+              <tr>
+                <th>Clienta</th>
+                <th>Teléfono</th>
+                <th>Servicio</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="citasBody"></tbody>
+          </table>
+          <div class="table-empty" id="citasEmpty" hidden>
+            <i class="fa-solid fa-calendar-xmark"></i>
+            <p>No hay citas registradas aún.</p>
+            <button class="btn-gold" onclick="openNuevaCita()" style="margin-top:12px">
+              <i class="fa-solid fa-plus"></i> Agregar primera cita
+            </button>
+          </div>
+        </div>
+        <div class="pagination" id="citasPagination"></div>
+      </div>
+    </section>
+
+    <!-- ─── VIEW: VENTAS ─────────────────────────────────── -->
+    <section class="view" id="view-ventas">
+      <div class="view-header">
+        <h2><i class="fa-solid fa-cash-register"></i> Ventas / Cobros</h2>
+        <button class="btn-gold" id="btnNuevaVenta">
+          <i class="fa-solid fa-plus"></i> Registrar venta
+        </button>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="ventaBuscar" class="filter-input" placeholder="🔍 Buscar clienta, servicio…" style="flex:1;min-width:180px" />
+        <input type="date" id="ventaDesde" class="filter-input" title="Desde" />
+        <input type="date" id="ventaHasta" class="filter-input" title="Hasta" />
+        <select id="ventaMetodo" class="filter-input">
+          <option value="">Todos los métodos</option>
+          <option value="efectivo">💵 Efectivo</option>
+          <option value="tarjeta">💳 Tarjeta</option>
+          <option value="transferencia">📲 Transferencia</option>
+        </select>
+        <button class="btn-outline" id="ventaFiltrar">
+          <i class="fa-solid fa-filter"></i> Filtrar
+        </button>
+        <button class="btn-outline" id="ventaLimpiar">
+          <i class="fa-solid fa-xmark"></i> Limpiar
+        </button>
+      </div>
+
+      <!-- Totales rápidos -->
+      <div class="totales-bar" id="totalesBar">
+        <span>Total: <strong id="totalFiltrado">$0</strong></span>
+        <span>💵 Efectivo: <strong id="totalEfectivo">$0</strong></span>
+        <span>💳 Tarjeta: <strong id="totalTarjeta">$0</strong></span>
+        <span>📲 Transferencia: <strong id="totalTransferencia">$0</strong></span>
+      </div>
+
+      <div class="section-card">
+        <div class="table-wrap">
+          <table class="admin-table" id="tablaVentas">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Clienta</th>
+                <th>Servicio</th>
+                <th>Monto</th>
+                <th>Método</th>
+                <th>Notas</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="ventasBody"></tbody>
+          </table>
+          <div class="table-empty" id="ventasEmpty" hidden>
+            <i class="fa-solid fa-receipt"></i>
+            <p>No hay ventas registradas aún.</p>
+            <button class="btn-gold" onclick="openNuevaVenta()" style="margin-top:12px">
+              <i class="fa-solid fa-plus"></i> Registrar primera venta
+            </button>
+          </div>
+        </div>
+        <div class="pagination" id="ventasPagination"></div>
+      </div>
+    </section>
+
+    <!-- ─── VIEW: REPORTES ───────────────────────────────── -->
+    <section class="view" id="view-reportes">
+      <div class="view-header">
+        <h2><i class="fa-solid fa-chart-line"></i> Reportes de Ventas</h2>
+        <div class="report-period">
+          <select id="reportPeriodo" class="filter-input">
+            <option value="7">Últimos 7 días</option>
+            <option value="30" selected>Últimos 30 días</option>
+            <option value="90">Últimos 90 días</option>
+            <option value="365">Último año</option>
+          </select>
+          <button class="btn-gold" id="btnGenerarReporte">
+            <i class="fa-solid fa-rotate"></i> Generar
+          </button>
+        </div>
+      </div>
+
+      <!-- KPIs reporte -->
+      <div class="kpi-grid">
+        <div class="kpi-card kpi--gold">
+          <div class="kpi-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+          <div class="kpi-info"><p>Total ventas</p><h2 id="rTotalVentas">$0</h2></div>
+        </div>
+        <div class="kpi-card kpi--purple">
+          <div class="kpi-icon"><i class="fa-solid fa-hashtag"></i></div>
+          <div class="kpi-info"><p>Nº transacciones</p><h2 id="rNumTrans">0</h2></div>
+        </div>
+        <div class="kpi-card kpi--teal">
+          <div class="kpi-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+          <div class="kpi-info"><p>Ticket promedio</p><h2 id="rTicket">$0</h2></div>
+        </div>
+        <div class="kpi-card kpi--rose">
+          <div class="kpi-icon"><i class="fa-solid fa-crown"></i></div>
+          <div class="kpi-info"><p>Servicio #1</p><h2 id="rTopServicio" style="font-size:1rem">—</h2></div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card chart-card--wide">
+          <h3>Ventas por día</h3>
+          <div style="height:280px"><canvas id="chartReporteDias"></canvas></div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Ventas por categoría</h3>
+          <div style="height:280px"><canvas id="chartReporteCat"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Método de pago</h3>
+          <div style="height:280px"><canvas id="chartReporteMetodo"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Top servicios tabla -->
+      <div class="section-card">
+        <div class="sc-header"><h3><i class="fa-solid fa-trophy"></i> Top 10 servicios</h3></div>
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>#</th><th>Servicio</th><th>Ventas</th><th>Total recaudado</th></tr></thead>
+            <tbody id="topServiciosBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /admin-main -->
+
+  <!-- ═══ MODAL NUEVA CITA ════════════════════════════════ -->
+  <div class="modal-overlay" id="modalCita">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalCitaTitulo">Nueva Cita</h3>
+        <button class="modal-close" onclick="closeModal('modalCita')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="formCita" novalidate>
+          <input type="hidden" id="citaId" />
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre clienta *</label>
+              <input type="text" id="citaNombre" required placeholder="María García" />
+            </div>
+            <div class="form-group">
+              <label>Teléfono *</label>
+              <input type="tel" id="citaTelefono" required placeholder="+52 998 000 0000" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="citaEmail" placeholder="correo@ejemplo.com" />
+          </div>
+          <div class="form-group">
+            <label>Servicio *</label>
+            <select id="citaServicio" required>
+              <option value="" disabled selected>Selecciona servicio</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Fecha *</label>
+              <input type="date" id="citaFecha" required />
+            </div>
+            <div class="form-group">
+              <label>Hora *</label>
+              <input type="time" id="citaHora" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Estado</label>
+            <select id="citaEstado">
+              <option value="pendiente">⏳ Pendiente</option>
+              <option value="confirmada">✅ Confirmada</option>
+              <option value="completada">🎉 Completada</option>
+              <option value="cancelada">❌ Cancelada</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Notas</label>
+            <textarea id="citaNotas" rows="2" placeholder="Observaciones adicionales…"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-outline" onclick="closeModal('modalCita')">Cancelar</button>
+            <button type="submit" class="btn-gold">
+              <i class="fa-solid fa-save"></i> Guardar cita
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ MODAL NUEVA VENTA ════════════════════════════════ -->
+  <div class="modal-overlay" id="modalVenta">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalVentaTitulo">Registrar Venta</h3>
+        <button class="modal-close" onclick="closeModal('modalVenta')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="formVenta" novalidate>
+          <input type="hidden" id="ventaId" />
+          <div class="form-row">
+            <div class="form-group">
+              <label>Clienta *</label>
+              <input type="text" id="ventaCliente" required placeholder="Nombre de la clienta" />
+            </div>
+            <div class="form-group">
+              <label>Fecha *</label>
+              <input type="date" id="ventaFecha" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Servicio *</label>
+            <select id="ventaServicio" required>
+              <option value="" disabled selected>Selecciona servicio</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Monto (MXN) *</label>
+              <input type="number" id="ventaMonto" required placeholder="0" min="0" step="50" />
+            </div>
+            <div class="form-group">
+              <label>Método de pago *</label>
+              <select id="ventaMetodoPago" required>
+                <option value="" disabled selected>Selecciona</option>
+                <option value="efectivo">💵 Efectivo</option>
+                <option value="tarjeta">💳 Tarjeta</option>
+                <option value="transferencia">📲 Transferencia</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Notas</label>
+            <textarea id="ventaNotas" rows="2" placeholder="Observaciones…"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-outline" onclick="closeModal('modalVenta')">Cancelar</button>
+            <button type="submit" class="btn-gold">
+              <i class="fa-solid fa-save"></i> Guardar venta
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/env.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios y Precios — GELESHA Spa</title>
+  <meta name="description" content="Catálogo completo de servicios y precios de GELESHA Spa. Masajes, faciales, depilación, aparatología y más." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── SERVICIOS PAGE ──────────────────────────────────── */
+    .srv-page-hero {
+      background: linear-gradient(135deg, #1a0a2e 0%, #2D0845 40%, #4a1060 70%, #2a0050 100%);
+      padding: 120px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .srv-page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 100%, rgba(208,140,55,.15) 0%, transparent 70%);
+    }
+    .srv-page-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 600;
+      color: #fff;
+      position: relative;
+    }
+    .srv-page-hero h1 em { color: #D08C37; font-style: italic; }
+    .srv-page-hero p {
+      color: rgba(255,255,255,.7);
+      margin-top: 12px;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    /* ── STICKY CATEGORY NAV ─────────────────────────────── */
+    .cat-nav-wrap {
+      position: sticky;
+      top: 70px;
+      z-index: 40;
+      background: #fff;
+      border-bottom: 1px solid #e8e4de;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .cat-nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .cat-nav::-webkit-scrollbar { display: none; }
+    .cat-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 14px 20px;
+      color: #6e6860;
+      text-decoration: none;
+      font-size: .78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: all .2s;
+      cursor: pointer;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: inherit;
+    }
+    .cat-nav-item i { font-size: 1.1rem; }
+    .cat-nav-item:hover,
+    .cat-nav-item.active {
+      color: #D08C37;
+      border-bottom-color: #D08C37;
+    }
+
+    /* ── SEARCH BAR ──────────────────────────────────────── */
+    .search-section {
+      background: #f5f3f0;
+      padding: 28px 24px;
+    }
+    .search-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .search-wrap i.icon-search {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #D08C37;
+      font-size: 1rem;
+    }
+    .search-wrap input {
+      width: 100%;
+      padding: 14px 48px;
+      border: 2px solid #e8e4de;
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: .95rem;
+      background: #fff;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .search-wrap input:focus {
+      border-color: #D08C37;
+      box-shadow: 0 0 0 4px rgba(208,140,55,.12);
+    }
+    .search-clear {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #9e9790;
+      cursor: pointer;
+      font-size: 1rem;
+      display: none;
+    }
+    .search-clear.visible { display: block; }
+    .search-count {
+      text-align: center;
+      margin-top: 10px;
+      font-size: .83rem;
+      color: #9e9790;
+    }
+    .search-count strong { color: #D08C37; }
+
+    /* ── CATEGORY SECTIONS ───────────────────────────────── */
+    .srv-sections {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+
+    .srv-section {
+      margin-bottom: 60px;
+    }
+
+    .srv-section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #f0ece8;
+    }
+
+    .srv-section-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .sec-masaje      .srv-section-icon { background: rgba(139,79,139,.12); color: #8B4F8B; }
+    .sec-facial      .srv-section-icon { background: rgba(208,140,55,.12); color: #D08C37; }
+    .sec-aparatologia .srv-section-icon { background: rgba(91,143,212,.12); color: #5b8fd4; }
+    .sec-reductivo   .srv-section-icon { background: rgba(42,157,143,.12); color: #2a9d8f; }
+    .sec-depilacion  .srv-section-icon { background: rgba(192,96,128,.12); color: #c06080; }
+    .sec-otros       .srv-section-icon { background: rgba(192,128,74,.12); color: #c0804a; }
+
+    .srv-section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #2a0a3e;
+    }
+    .srv-section-header .srv-count {
+      font-size: .78rem;
+      font-weight: 600;
+      color: #9e9790;
+      background: #f0ece8;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── SERVICE CARDS GRID ──────────────────────────────── */
+    .srv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .srv-item {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      border: 1px solid #f0ece8;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      cursor: default;
+    }
+
+    .srv-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.1);
+      border-color: #D08C37;
+    }
+
+    .srv-item-info { flex: 1; }
+
+    .srv-item-name {
+      font-size: .95rem;
+      font-weight: 600;
+      color: #2a0a3e;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .srv-item-name mark {
+      background: rgba(208,140,55,.25);
+      color: inherit;
+      border-radius: 3px;
+      padding: 0 2px;
+    }
+
+    .srv-item-time {
+      font-size: .78rem;
+      color: #9e9790;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .srv-item-price {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #D08C37;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .srv-item-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-ver-mas {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      background: linear-gradient(135deg, #D08C37, #b07020);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      font-family: inherit;
+      font-size: .75rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity .2s, transform .15s;
+      box-shadow: 0 2px 8px rgba(208,140,55,.3);
+    }
+    .btn-ver-mas:hover {
+      opacity: .88;
+      transform: translateY(-1px);
+    }
+
+    /* ── NO RESULTS ──────────────────────────────────────── */
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: #9e9790;
+      display: none;
+    }
+    .no-results.show { display: block; }
+    .no-results i { font-size: 3rem; margin-bottom: 12px; display: block; }
+
+    /* ── CTA BOTTOM ──────────────────────────────────────── */
+    .srv-cta {
+      background: linear-gradient(135deg, #2D0845, #4a1060);
+      text-align: center;
+      padding: 60px 24px;
+    }
+    .srv-cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .srv-cta p { color: rgba(255,255,255,.75); margin-bottom: 28px; }
+
+    @media (max-width: 768px) {
+      .srv-grid { grid-template-columns: 1fr 1fr; }
+      .cat-nav-item { padding: 12px 14px; font-size: .7rem; }
+      .srv-item { flex-wrap: wrap; }
+      .srv-item-right { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; }
+    }
+    @media (max-width: 480px) {
+      .srv-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAV ══════════════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo-link">
+        <img src="images/logo.png" alt="GELESHA" class="logo-img" />
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html" class="active">Servicios</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+        
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══ PAGE HERO ════════════════════════════════════════════ -->
+  <section class="srv-page-hero">
+    <h1>Menú de <em>Servicios</em> &amp; Precios</h1>
+    <p>Tratamientos de bienestar y estética diseñados para ti · Precios en MXN</p>
+  </section>
+
+  <!-- ══ STICKY CATEGORY NAV ══════════════════════════════════ -->
+  <div class="cat-nav-wrap" id="catNavWrap">
+    <nav class="cat-nav">
+      <button class="cat-nav-item active" data-section="all">
+        <i class="fa-solid fa-th-large"></i>Todos
+      </button>
+      <button class="cat-nav-item" data-section="masaje">
+        <i class="fa-solid fa-hand-dots"></i>Masajes
+      </button>
+      <button class="cat-nav-item" data-section="facial">
+        <i class="fa-solid fa-face-smile-beam"></i>Faciales
+      </button>
+      <button class="cat-nav-item" data-section="aparatologia">
+        <i class="fa-solid fa-bolt"></i>Aparatología
+      </button>
+      <button class="cat-nav-item" data-section="reductivo">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>Reductivos
+      </button>
+      <button class="cat-nav-item" data-section="depilacion">
+        <i class="fa-solid fa-leaf"></i>Depilación
+      </button>
+      <button class="cat-nav-item" data-section="otros">
+        <i class="fa-solid fa-spa"></i>Otros
+      </button>
+    </nav>
+  </div>
+
+  <!-- ══ SEARCH ═══════════════════════════════════════════════ -->
+  <div class="search-section">
+    <div class="search-wrap">
+      <i class="fa-solid fa-magnifying-glass icon-search"></i>
+      <input type="text" id="searchInput" placeholder="Busca tu tratamiento ideal…" autocomplete="off" />
+      <button class="search-clear" id="searchClear" aria-label="Limpiar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <p class="search-count">
+      Mostrando <strong id="countNum">62</strong> servicios
+    </p>
+  </div>
+
+  <!-- ══ SERVICES SECTIONS ════════════════════════════════════ -->
+  <div class="srv-sections" id="srvSections">
+
+    <!-- MASAJES -->
+    <div class="srv-section sec-masaje" id="sec-masaje">
+      <div class="srv-section-header">
+        <div class="srv-section-icon"><i class="fa-solid fa-hand-dots"></i></div>
+        <div>
+          <h2>Masajes</h2>
+          <p style="color:#9e9790;font-size:.85rem">Relajación profunda · Bienestar corporal</p>
+        </div>
+        <span class="srv-count" id="cnt-masaje">12 servicios</span>
+      </div>
+      <div class="srv-grid" id="grid-masaje"></div>
+    </div>
+
+    <!-- FACIALES -->
+    <div class="srv-section sec-facial" id="sec-facial">
+      <div class="srv-section-header">
+        <div class="srv-section-icon"><i class="fa-solid fa-face-smile-beam"></i></div>
+        <div>
+          <h2>Faciales</h2>
+          <p style="color:#9e9790;font-size:.85rem">Cuidado profesional de la piel</p>
+        </div>
+        <span class="srv-count" id="cnt-facial">8 servicios</span>
+      </div>
+      <div class="srv-grid" id="grid-facial"></div>
+    </div>
+
+    <!-- APARATOLOGÍA -->
+    <div class="srv-section sec-aparatologia" id="sec-aparatologia">
+      <div class="srv-section-header">
+        <div class="srv-section-icon"><i class="fa-solid fa-bolt"></i></div>
+        <div>
+          <h2>Aparatología</h2>
+          <p style="color:#9e9790;font-size:.85rem">Tecnología estética avanzada</p>
+        </div>
+        <span class="srv-count" id="cnt-aparatologia">6 servicios</span>
+      </div>
+      <div class="srv-grid" id="grid-aparatologia"></div>
+    </div>
+
+    <!-- REDUCTIVOS -->
+    <div class="srv-section sec-reductivo" id="sec-reductivo">
+      <div class="srv-section-header">
+        <div class="srv-section-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <div>
+          <h2>Reductivos</h2>
+          <p style="color:#9e9790;font-size:.85rem">Modelado y reducción corporal</p>
+        </div>
+        <span class="srv-count" id="cnt-reductivo">12 servicios</span>
+      </div>
+      <div class="srv-grid" id="grid-reductivo"></div>
+    </div>
+
+    <!-- DEPILACIÓN -->
+    <div class="srv-section sec-depilacion" id="sec-depilacion">
+      <div class="srv-section-header">
+        <div class="srv-section-icon"><i class="fa-solid fa-leaf"></i></div>
+        <div>
+          <h2>Depilación</h2>
+          <p style="color:#9e9790;font-size:.85rem">Piel suave y libre</p>
+        </div>
+        <span class="srv-count" id="cnt-depilacion">19 servicios</span>
+      </div>
+      <div class="srv-grid" id="grid-depilacion"></div>
+    </div>
+
+    <!-- OTROS -->
+    <div class="srv-section sec-otros" id="sec-otros">
+      <div class="srv-section-header">
+        <div class="srv-section-icon"><i class="fa-solid fa-spa"></i></div>
+        <div>
+          <h2>Otros Servicios</h2>
+          <p style="color:#9e9790;font-size:.85rem">Reflexología · Exfoliación · Bienestar</p>
+        </div>
+        <span class="srv-count" id="cnt-otros">4 servicios</span>
+      </div>
+      <div class="srv-grid" id="grid-otros"></div>
+    </div>
+
+    <!-- No results -->
+    <div class="no-results" id="noResults">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <p>No encontramos servicios que coincidan con tu búsqueda.</p>
+      <p style="margin-top:8px;font-size:.85rem">Intenta con otro término.</p>
+    </div>
+
+  </div>
+
+  <!-- ══ CTA ══════════════════════════════════════════════════ -->
+  <section class="srv-cta">
+    <h2>¿Lista para <em>relajarte</em>?</h2>
+    <p>Escríbenos y agenda tu cita. ¡Te esperamos!</p>
+    <a href="https://wa.me/529987388389?text=Hola!%20Me%20gustar%C3%ADa%20agendar%20una%20cita%20en%20GELESHA"
+       target="_blank" rel="noopener" class="btn-primary">
+      <i class="fa-brands fa-whatsapp"></i> Agendar por WhatsApp
+    </a>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="GELESHA" class="footer-logo" />
+        <p>Spa · Estética Corporal y Facial</p>
+        <p class="footer-tagline">Tu bienestar, nuestro compromiso.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Menú</h4>
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-nav">
+        <h4>Categorías</h4>
+        <a href="#" onclick="scrollToSec('masaje')">Masajes</a>
+        <a href="#" onclick="scrollToSec('facial')">Faciales</a>
+        <a href="#" onclick="scrollToSec('reductivo')">Reductivos</a>
+        <a href="#" onclick="scrollToSec('depilacion')">Depilación</a>
+      </div>
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <p><i class="fa-brands fa-whatsapp"></i> +52 998 738 8389</p>
+        <p><i class="fa-brands fa-instagram"></i> @gelesha</p>
+        <p><i class="fa-solid fa-clock"></i> Lun–Sáb · 9:00–19:00</p>
+        <p><i class="fa-solid fa-location-dot"></i> México</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 GELESHA · Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <a href="https://wa.me/529987388389" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script>
+  /* ── CATÁLOGO ─────────────────────────────────────────── */
+  const CATALOGO = [
+    { id:'s01', cat:'Masaje',       nombre:'Masaje Relajante',                 precio:850,   tiempo:'80 min' },
+    { id:'s02', cat:'Masaje',       nombre:'Masaje Tejido Profundo',           precio:1400,  tiempo:'80 min' },
+    { id:'s03', cat:'Masaje',       nombre:'Masaje Piedras Calientes',         precio:1400,  tiempo:'80 min' },
+    { id:'s04', cat:'Masaje',       nombre:'Masaje Deportivo',                 precio:1200,  tiempo:'80 min' },
+    { id:'s05', cat:'Masaje',       nombre:'Drenaje Linfático Manual',         precio:1350,  tiempo:'80 min' },
+    { id:'s06', cat:'Masaje',       nombre:'Masaje Sueco',                     precio:1100,  tiempo:'80 min' },
+    { id:'s07', cat:'Masaje',       nombre:'Masaje Piernas Cansadas',          precio:500,   tiempo:'30 min' },
+    { id:'s08', cat:'Masaje',       nombre:'Masaje Chakras',                   precio:1100,  tiempo:'60 min' },
+    { id:'s09', cat:'Masaje',       nombre:'Masaje Ayurveda',                  precio:1350,  tiempo:'90 min' },
+    { id:'s10', cat:'Masaje',       nombre:'Masaje Shantala',                  precio:850,   tiempo:'40 min' },
+    { id:'s11', cat:'Masaje',       nombre:'Masaje Terapéutico',               precio:1000,  tiempo:'60 min' },
+    { id:'s12', cat:'Masaje',       nombre:'Yoga Facial',                      precio:700,   tiempo:'30 min' },
+    { id:'s13', cat:'Facial',       nombre:'Dermapen',                         precio:1500,  tiempo:'80 min' },
+    { id:'s14', cat:'Facial',       nombre:'Limpieza Facial Profunda',         precio:950,   tiempo:'90 min' },
+    { id:'s15', cat:'Facial',       nombre:'Facial Antiedad',                  precio:950,   tiempo:'90 min' },
+    { id:'s16', cat:'Facial',       nombre:'Control Acné',                     precio:950,   tiempo:'90 min' },
+    { id:'s17', cat:'Facial',       nombre:'Facial Descongestivo',             precio:950,   tiempo:'90 min' },
+    { id:'s18', cat:'Facial',       nombre:'Facial Despigmentante',            precio:950,   tiempo:'90 min' },
+    { id:'s19', cat:'Facial',       nombre:'Facial Hidratante',                precio:700,   tiempo:'60 min' },
+    { id:'s20', cat:'Facial',       nombre:'Hidralips',                        precio:700,   tiempo:'20 min' },
+    { id:'s21', cat:'Aparatologia', nombre:'Cavitación',                       precio:900,   tiempo:'50 min' },
+    { id:'s22', cat:'Aparatologia', nombre:'EMSCULPT (Abd, Glúteos o Piernas)',precio:700,   tiempo:'30 min' },
+    { id:'s23', cat:'Aparatologia', nombre:'Radio + Metalo o Madero',          precio:1100,  tiempo:'60 min' },
+    { id:'s24', cat:'Aparatologia', nombre:'Presoterapia',                     precio:600,   tiempo:'60 min' },
+    { id:'s25', cat:'Aparatologia', nombre:'Gimnasia Pasiva',                  precio:500,   tiempo:'30 min' },
+    { id:'s26', cat:'Aparatologia', nombre:'Carboxiterapia',                   precio:500,   tiempo:'30 min' },
+    { id:'s27', cat:'Reductivo',    nombre:'Reductivo Abdomen',                precio:1300,  tiempo:'90 min' },
+    { id:'s28', cat:'Reductivo',    nombre:'Reductivo Piernas',                precio:1300,  tiempo:'90 min' },
+    { id:'s29', cat:'Reductivo',    nombre:'Reductivo Brazos',                 precio:800,   tiempo:'90 min' },
+    { id:'s30', cat:'Reductivo',    nombre:'Reductivo Papada',                 precio:1100,  tiempo:'90 min' },
+    { id:'s31', cat:'Reductivo',    nombre:'Levantamiento de Glúteos',         precio:1000,  tiempo:'90 min' },
+    { id:'s32', cat:'Reductivo',    nombre:'Criolipólisis Abdomen',            precio:1100,  tiempo:'90 min' },
+    { id:'s33', cat:'Reductivo',    nombre:'Criolipólisis Piernas',            precio:1100,  tiempo:'90 min' },
+    { id:'s34', cat:'Reductivo',    nombre:'Criolipólisis Brazos',             precio:1100,  tiempo:'90 min' },
+    { id:'s35', cat:'Reductivo',    nombre:'Reafirmante Abdomen',              precio:900,   tiempo:'90 min' },
+    { id:'s36', cat:'Reductivo',    nombre:'Reafirmante Piernas',              precio:900,   tiempo:'90 min' },
+    { id:'s37', cat:'Reductivo',    nombre:'Reafirmante Brazos',               precio:500,   tiempo:'90 min' },
+    { id:'s38', cat:'Reductivo',    nombre:'Anticelulitis Piernas',            precio:750,   tiempo:'90 min' },
+    { id:'s39', cat:'Depilacion',   nombre:'Depilación Brazo',                 precio:650,   tiempo:'30 min' },
+    { id:'s40', cat:'Depilacion',   nombre:'Depilación Antebrazo',             precio:650,   tiempo:'30 min' },
+    { id:'s41', cat:'Depilacion',   nombre:'Depilación Muslo',                 precio:750,   tiempo:'30 min' },
+    { id:'s42', cat:'Depilacion',   nombre:'Depilación Media Pierna',          precio:750,   tiempo:'30 min' },
+    { id:'s43', cat:'Depilacion',   nombre:'Depilación Pierna Completa',       precio:900,   tiempo:'30 min' },
+    { id:'s44', cat:'Depilacion',   nombre:'Depilación Abdomen',               precio:750,   tiempo:'30 min' },
+    { id:'s45', cat:'Depilacion',   nombre:'Depilación Espalda Alta',          precio:700,   tiempo:'30 min' },
+    { id:'s46', cat:'Depilacion',   nombre:'Depilación Espalda Baja',          precio:700,   tiempo:'30 min' },
+    { id:'s47', cat:'Depilacion',   nombre:'Depilación Glúteos',               precio:650,   tiempo:'30 min' },
+    { id:'s48', cat:'Depilacion',   nombre:'Depilación Cara Completa',         precio:600,   tiempo:'30 min' },
+    { id:'s49', cat:'Depilacion',   nombre:'Depilación Bikini Brasileño',      precio:800,   tiempo:'30 min' },
+    { id:'s50', cat:'Depilacion',   nombre:'Depilación Patilla',               precio:250,   tiempo:'30 min' },
+    { id:'s51', cat:'Depilacion',   nombre:'Depilación Bigote',                precio:250,   tiempo:'30 min' },
+    { id:'s52', cat:'Depilacion',   nombre:'Depilación Mentón',                precio:250,   tiempo:'30 min' },
+    { id:'s53', cat:'Depilacion',   nombre:'Depilación Cuello',                precio:250,   tiempo:'30 min' },
+    { id:'s54', cat:'Depilacion',   nombre:'Depilación Axilas',                precio:500,   tiempo:'30 min' },
+    { id:'s55', cat:'Depilacion',   nombre:'Depilación Senos / Pecho',         precio:500,   tiempo:'30 min' },
+    { id:'s56', cat:'Depilacion',   nombre:'Depilación Bikini (Pubis)',         precio:600,   tiempo:'30 min' },
+    { id:'s57', cat:'Depilacion',   nombre:'Depilación Cuerpo Completo',       precio:1500,  tiempo:'60 min' },
+    { id:'s58', cat:'Otros',        nombre:'Reflexología de Manos',            precio:500,   tiempo:'50 min' },
+    { id:'s59', cat:'Otros',        nombre:'Reflexología de Pies',             precio:500,   tiempo:'50 min' },
+    { id:'s60', cat:'Otros',        nombre:'Exfoliación de Pies',              precio:500,   tiempo:'30 min' },
+    { id:'s61', cat:'Otros',        nombre:'Manos y Pies de Seda',             precio:900,   tiempo:'30 min' },
+  ];
+
+  const CAT_SECTIONS = {
+    Masaje:       'masaje',
+    Facial:       'facial',
+    Aparatologia: 'aparatologia',
+    Reductivo:    'reductivo',
+    Depilacion:   'depilacion',
+    Otros:        'otros',
+  };
+
+  const fmt = n => `$${Number(n).toLocaleString('es-MX',{minimumFractionDigits:0})}`;
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+
+  function highlight(text, q) {
+    if (!q) return text;
+    const safe = q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    return text.replace(new RegExp(safe,'gi'), m=>`<mark>${m}</mark>`);
+  }
+
+  const WA_NUMBER = '529987388389';
+
+  function waLink(servicio, precio) {
+    const msg = encodeURIComponent(`Hola GELESHA! 🌿 Me gustaría agendar:\n✨ Servicio: ${servicio}\n💰 Precio: ${precio}\n\n¿Cuál es su disponibilidad?`);
+    return `https://wa.me/${WA_NUMBER}?text=${msg}`;
+  }
+
+  function buildItem(srv, query) {
+    return `
+      <a href="servicio.html?id=${srv.id}" class="srv-item" style="text-decoration:none;color:inherit;cursor:pointer">
+        <div class="srv-item-info">
+          <div class="srv-item-name">${highlight(srv.nombre, query)}</div>
+          <div class="srv-item-time"><i class="fa-regular fa-clock"></i>${srv.tiempo}</div>
+        </div>
+        <div class="srv-item-right">
+          <div class="srv-item-price">${fmt(srv.precio)}</div>
+          <span class="btn-ver-mas">
+            <i class="fa-solid fa-arrow-right"></i> Ver y agendar
+          </span>
+        </div>
+      </a>`;
+  }
+
+  let activeSection = 'all';
+  let activeQuery   = '';
+
+  function applyFilters() {
+    const q     = norm(activeQuery);
+    let total   = 0;
+    let anyMatch = false;
+
+    Object.entries(CAT_SECTIONS).forEach(([cat, sec]) => {
+      const section = document.getElementById(`sec-${sec}`);
+      const grid    = document.getElementById(`grid-${sec}`);
+      const cntEl   = document.getElementById(`cnt-${sec}`);
+      if (!section || !grid) return;
+
+      let items = CATALOGO.filter(s => s.cat === cat);
+
+      if (activeSection !== 'all' && activeSection !== sec) {
+        section.style.display = 'none';
+        return;
+      }
+
+      if (q) {
+        items = items.filter(s => norm(s.nombre).includes(q));
+      }
+
+      if (items.length === 0) {
+        section.style.display = 'none';
+        return;
+      }
+
+      section.style.display = 'block';
+      anyMatch = true;
+      total += items.length;
+      cntEl.textContent = `${items.length} ${items.length === 1 ? 'servicio' : 'servicios'}`;
+      grid.innerHTML = items.map(s => buildItem(s, activeQuery)).join('');
+    });
+
+    document.getElementById('countNum').textContent = total;
+    const noRes = document.getElementById('noResults');
+    noRes.classList.toggle('show', !anyMatch);
+  }
+
+  /* ── INIT ─────────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', () => {
+
+    applyFilters();
+
+    /* Search */
+    const input = document.getElementById('searchInput');
+    const clear = document.getElementById('searchClear');
+
+    input.addEventListener('input', () => {
+      activeQuery = input.value.trim();
+      clear.classList.toggle('visible', activeQuery.length > 0);
+      if (activeQuery) { activeSection = 'all'; updateNavBtns('all'); }
+      applyFilters();
+    });
+
+    clear.addEventListener('click', () => {
+      input.value = '';
+      activeQuery = '';
+      clear.classList.remove('visible');
+      input.focus();
+      applyFilters();
+    });
+
+    /* Category nav */
+    document.querySelectorAll('.cat-nav-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeSection = btn.dataset.section;
+        updateNavBtns(activeSection);
+        activeQuery = '';
+        input.value = '';
+        clear.classList.remove('visible');
+        applyFilters();
+        if (activeSection !== 'all') {
+          setTimeout(() => scrollToSec(activeSection), 80);
+        } else {
+          window.scrollTo({ top: document.getElementById('srvSections').offsetTop - 140, behavior: 'smooth' });
+        }
+      });
+    });
+
+    /* Navbar scroll */
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* Hamburger */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      hamburger.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('active');
+      });
+    });
+
+    /* URL param: ?cat=Masaje */
+    const params = new URLSearchParams(window.location.search);
+    const catParam = params.get('cat');
+    if (catParam) {
+      const sec = CAT_SECTIONS[catParam];
+      if (sec) {
+        activeSection = sec;
+        updateNavBtns(sec);
+        applyFilters();
+        setTimeout(() => scrollToSec(sec), 300);
+      }
+    }
+  });
+
+  function updateNavBtns(active) {
+    document.querySelectorAll('.cat-nav-item').forEach(b => {
+      b.classList.toggle('active', b.dataset.section === active);
+    });
+  }
+
+  function scrollToSec(sec) {
+    const el = document.getElementById(`sec-${sec}`);
+    if (!el) return;
+    const offset = el.getBoundingClientRect().top + window.scrollY - 150;
+    window.scrollTo({ top: offset, behavior: 'smooth' });
+  }
+  </script>
+</body>
+</html>

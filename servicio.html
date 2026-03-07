@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Servicio — GELESHA Spa</title>
+  <meta name="description" id="pageDesc" content="Detalle del servicio en GELESHA Spa" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       PÁGINA DE DETALLE DE SERVICIO
+    ═══════════════════════════════════════════════════════ */
+
+    /* ── HERO ───────────────────────────────────────────── */
+    .det-hero {
+      background: linear-gradient(135deg, #1a0a2e 0%, #2D0845 45%, #4a1060 100%);
+      padding: 110px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .det-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(208,140,55,.18) 0%, transparent 65%);
+    }
+    .det-hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 0;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 48px;
+      align-items: end;
+      position: relative;
+    }
+    .det-breadcrumb {
+      font-size: .75rem;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .det-breadcrumb a { color: rgba(255,255,255,.55); transition: color .2s; }
+    .det-breadcrumb a:hover { color: #D08C37; }
+    .det-breadcrumb i { font-size: .6rem; }
+
+    .det-cat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .det-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .det-hero-desc {
+      color: rgba(255,255,255,.72);
+      font-size: .95rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 500px;
+    }
+
+    .det-meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .det-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 24px;
+      font-size: .8rem;
+      color: rgba(255,255,255,.85);
+      backdrop-filter: blur(4px);
+    }
+    .det-pill i { color: #D08C37; }
+
+    /* Booking card floating */
+    .det-book-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.35);
+      margin-bottom: -40px;
+      position: relative;
+      z-index: 10;
+    }
+    .det-book-price {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #D08C37;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .det-book-price span {
+      font-size: .85rem;
+      font-weight: 400;
+      color: #9e9790;
+    }
+    .det-book-duration {
+      font-size: .82rem;
+      color: #9e9790;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .det-book-duration i { color: #D08C37; }
+
+    .btn-book-main {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #D08C37, #b07020);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 6px 20px rgba(208,140,55,.35);
+      margin-bottom: 12px;
+    }
+    .btn-book-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(208,140,55,.45);
+    }
+    .btn-book-wa {
+      width: 100%;
+      padding: 12px;
+      background: none;
+      border: 2px solid #25D366;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: .88rem;
+      font-weight: 600;
+      color: #1a9c50;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all .2s;
+      text-decoration: none;
+    }
+    .btn-book-wa:hover {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .det-book-trust {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .det-trust-item {
+      font-size: .75rem;
+      color: #9e9790;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .det-trust-item i { color: #2a9d8f; }
+
+    /* ── CONTENT SECTION ────────────────────────────────── */
+    .det-content {
+      max-width: 1100px;
+      margin: 80px auto 0;
+      padding: 0 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .det-section {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.06);
+      border: 1px solid #f0ece8;
+      margin-bottom: 20px;
+    }
+    .det-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2D0845;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .det-section h3 i { color: #D08C37; font-size: 1rem; }
+
+    .det-benefits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .det-benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .88rem;
+      color: #4A2060;
+      line-height: 1.5;
+    }
+    .det-benefit i { color: #D08C37; margin-top: 2px; flex-shrink: 0; }
+
+    .det-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .det-step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .det-step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #D08C37, #b07020);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .det-step-text strong {
+      display: block;
+      font-size: .88rem;
+      font-weight: 600;
+      color: #2D0845;
+      margin-bottom: 2px;
+    }
+    .det-step-text span { font-size: .82rem; color: #9e9790; }
+
+    /* Tags */
+    .det-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .det-tag {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 600;
+      background: #f5f3f0;
+      color: #6e6860;
+      border: 1px solid #e8e4de;
+    }
+
+    /* Related services */
+    .det-related-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .det-related-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid #f0ece8;
+      cursor: pointer;
+      transition: all .2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .det-related-item:hover {
+      border-color: #D08C37;
+      background: #fdf8f2;
+    }
+    .det-related-name { font-size: .85rem; font-weight: 600; color: #2D0845; }
+    .det-related-time { font-size: .75rem; color: #9e9790; margin-top: 2px; }
+    .det-related-price { font-size: .9rem; font-weight: 700; color: #D08C37; }
+
+    /* ── BOOKING MODAL ──────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(20,5,40,.65);
+      z-index: 300;
+      display: flex; align-items: center; justify-content: center;
+      padding: 16px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s;
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal-book {
+      background: #fff;
+      border-radius: 24px;
+      width: 100%; max-width: 560px;
+      max-height: 92vh; overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(0,0,0,.35);
+      transform: translateY(28px) scale(.97);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+    }
+    .modal-overlay.open .modal-book { transform: translateY(0) scale(1); }
+
+    /* ── Modal header ── */
+    .modal-book-header {
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid #f0ece8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: sticky; top: 0;
+      background: #fff;
+      border-radius: 24px 24px 0 0;
+      z-index: 2;
+    }
+    .modal-book-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #2D0845;
+    }
+    .modal-book-header p { font-size: .78rem; color: #9e9790; margin-top: 2px; }
+    .modal-close-btn {
+      background: #f5f3f0; border: none;
+      width: 34px; height: 34px; border-radius: 50%;
+      cursor: pointer; font-size: .9rem; color: #6e6860;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s; flex-shrink: 0;
+    }
+    .modal-close-btn:hover { background: #e8e4de; color: #2D0845; }
+
+    /* ── Steps indicator ── */
+    .steps-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 16px 24px 0;
+    }
+    .step-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      position: relative;
+    }
+    .step-dot-circle {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 2px solid #e8e4de;
+      background: #fff;
+      color: #c8c4be;
+      font-size: .78rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .3s;
+      z-index: 1;
+    }
+    .step-dot.active .step-dot-circle {
+      border-color: #D08C37;
+      background: #D08C37;
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(208,140,55,.2);
+    }
+    .step-dot.done .step-dot-circle {
+      border-color: #2a9d8f;
+      background: #2a9d8f;
+      color: #fff;
+    }
+    .step-dot-label {
+      font-size: .65rem;
+      font-weight: 600;
+      color: #c8c4be;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      white-space: nowrap;
+    }
+    .step-dot.active .step-dot-label,
+    .step-dot.done  .step-dot-label { color: #D08C37; }
+    .step-dot.done  .step-dot-label { color: #2a9d8f; }
+    .step-line {
+      width: 48px; height: 2px;
+      background: #e8e4de;
+      margin: 0 4px;
+      margin-bottom: 20px;
+      transition: background .3s;
+    }
+    .step-line.done { background: #2a9d8f; }
+
+    /* ── Service banner ── */
+    .svc-banner {
+      margin: 16px 24px 0;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #fdf8f2, #faf4ea);
+      border: 1.5px solid rgba(208,140,55,.22);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .svc-banner-name { font-size: .88rem; font-weight: 700; color: #2D0845; }
+    .svc-banner-sub  { font-size: .73rem; color: #9e9790; margin-top: 1px; }
+    .svc-banner-price{ font-size: 1.15rem; font-weight: 700; color: #D08C37; white-space:nowrap; }
+
+    /* ── Step panels ── */
+    .modal-book-body { padding: 20px 24px 24px; }
+    .step-panel { display: none; }
+    .step-panel.active { display: block; }
+
+    /* ── CALENDAR ── */
+    .cal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .cal-month-label {
+      font-size: 1rem; font-weight: 700; color: #2D0845;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .cal-nav {
+      background: none; border: 1.5px solid #e8e4de;
+      width: 32px; height: 32px; border-radius: 8px;
+      cursor: pointer; font-size: .85rem; color: #6e6860;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .cal-nav:hover { border-color: #D08C37; color: #D08C37; }
+    .cal-nav:disabled { opacity: .3; cursor: not-allowed; }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    .cal-day-name {
+      text-align: center;
+      font-size: .68rem;
+      font-weight: 700;
+      color: #9e9790;
+      text-transform: uppercase;
+      padding: 4px 0 8px;
+      letter-spacing: .04em;
+    }
+    .cal-day {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: all .18s;
+      color: #373435;
+      background: #faf9f7;
+    }
+    .cal-day:hover:not(.disabled):not(.selected) {
+      border-color: #D08C37;
+      background: #fdf8f2;
+      color: #D08C37;
+    }
+    .cal-day.selected {
+      background: #D08C37;
+      color: #fff;
+      border-color: #D08C37;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(208,140,55,.4);
+    }
+    .cal-day.today:not(.selected) {
+      border-color: #8B4F8B;
+      color: #8B4F8B;
+      font-weight: 700;
+    }
+    .cal-day.disabled {
+      color: #d5cfc8;
+      background: transparent;
+      cursor: not-allowed;
+      border-color: transparent;
+    }
+    .cal-day.empty { background: transparent; cursor: default; }
+
+    /* ── TIME SLOTS ── */
+    .time-section-title {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: #9e9790;
+      margin: 20px 0 10px;
+    }
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .time-slot {
+      padding: 10px 6px;
+      border-radius: 10px;
+      border: 1.5px solid #e8e4de;
+      background: #faf9f7;
+      text-align: center;
+      font-size: .82rem;
+      font-weight: 600;
+      color: #4A2060;
+      cursor: pointer;
+      transition: all .18s;
+    }
+    .time-slot:hover:not(.unavailable) {
+      border-color: #D08C37;
+      background: #fdf8f2;
+      color: #D08C37;
+    }
+    .time-slot.selected {
+      background: #2D0845;
+      border-color: #2D0845;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(45,8,69,.3);
+    }
+
+    /* ── DATE SELECTED SUMMARY ── */
+    .date-summary {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      background: #f0ece8;
+      border-radius: 10px;
+      margin-bottom: 6px;
+      font-size: .85rem;
+      color: #2D0845;
+      font-weight: 600;
+    }
+    .date-summary.show { display: flex; }
+    .date-summary i { color: #D08C37; }
+    .date-summary .change-link {
+      margin-left: auto;
+      font-size: .75rem;
+      color: #D08C37;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* ── FORM FIELDS ── */
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block;
+      font-size: .72rem;
+      font-weight: 700;
+      color: #6e6860;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #e8e4de;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: .9rem;
+      color: #373435;
+      background: #faf9f7;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #D08C37;
+      box-shadow: 0 0 0 3px rgba(208,140,55,.12);
+      background: #fff;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* ── CONFIRM SUMMARY ── */
+    .confirm-box {
+      background: linear-gradient(135deg, #fdf8f2, #faf4ea);
+      border: 1.5px solid rgba(208,140,55,.2);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .confirm-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(208,140,55,.1);
+      font-size: .85rem;
+    }
+    .confirm-row:last-child { border-bottom: none; }
+    .confirm-row span:first-child { color: #9e9790; font-weight: 500; }
+    .confirm-row span:last-child  { color: #2D0845; font-weight: 700; }
+
+    /* ── NAV BUTTONS ── */
+    .modal-nav {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .btn-back {
+      padding: 12px 20px;
+      background: none;
+      border: 1.5px solid #e8e4de;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: .88rem;
+      font-weight: 600;
+      color: #6e6860;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 6px;
+      transition: all .2s;
+    }
+    .btn-back:hover { border-color: #9e9790; color: #373435; }
+    .btn-next {
+      flex: 1;
+      padding: 13px;
+      background: linear-gradient(135deg, #D08C37, #b07020);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: .92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: transform .2s, box-shadow .2s, background .2s;
+      box-shadow: 0 4px 16px rgba(208,140,55,.3);
+    }
+    .btn-next:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(208,140,55,.4); }
+    .btn-next:disabled { background: #d5cfc8; box-shadow: none; transform: none; cursor: not-allowed; }
+    .btn-next.btn-confirm { background: linear-gradient(135deg, #2a9d8f, #1a7d6f); box-shadow: 0 4px 16px rgba(42,157,143,.3); }
+    .btn-next.btn-confirm:hover { box-shadow: 0 8px 24px rgba(42,157,143,.4); }
+
+    /* ── SUCCESS ── */
+    .book-success {
+      display: none;
+      text-align: center;
+      padding: 40px 24px 32px;
+    }
+    .book-success.show { display: block; }
+    .success-anim {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2a9d8f, #1a7d6f);
+      color: #fff; font-size: 2.2rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      animation: popIn .4s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes popIn {
+      0%   { transform: scale(0); opacity: 0; }
+      70%  { transform: scale(1.12); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .book-success h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; color: #2D0845; margin-bottom: 8px;
+    }
+    .book-success p { font-size: .88rem; color: #9e9790; margin-bottom: 6px; }
+    .success-detail {
+      background: #f5f3f0; border-radius: 12px;
+      padding: 16px; margin: 20px 0;
+      text-align: left;
+    }
+    .success-detail p {
+      font-size: .85rem; color: #4A2060;
+      font-weight: 600; margin: 4px 0;
+    }
+    .success-detail i { color: #D08C37; width: 18px; }
+
+    /* Error */
+    .form-msg {
+      padding: 10px 14px; border-radius: 8px;
+      font-size: .82rem; margin-top: 10px; display: none;
+    }
+    .form-msg.show { display: flex; align-items: center; gap: 8px; }
+    .form-msg.error   { background: rgba(192,48,48,.08); border: 1px solid rgba(192,48,48,.2); color: #c03030; }
+    .form-msg.success { background: rgba(42,157,143,.08); border: 1px solid rgba(42,157,143,.2); color: #1a7d6f; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .det-hero-inner, .det-content {
+        grid-template-columns: 1fr;
+      }
+      .det-book-card { margin-bottom: 0; margin-top: 32px; }
+      .det-hero-inner { padding-bottom: 32px; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAV ════════════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo-link">
+        <img src="images/logo.png" alt="GELESHA" class="logo-img" />
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html" class="active">Servicios</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══ HERO ═══════════════════════════════════════════════ -->
+  <section class="det-hero" id="detHero">
+    <div class="det-hero-inner">
+      <!-- Left: info -->
+      <div class="det-info">
+        <div class="det-breadcrumb">
+          <a href="index.html">Inicio</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <a href="servicios.html">Servicios</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span id="breadCat">—</span>
+        </div>
+        <div class="det-cat-badge" id="catBadge"></div>
+        <h1 id="srvTitle">Cargando…</h1>
+        <p class="det-hero-desc" id="srvDesc"></p>
+        <div class="det-meta-pills" id="srvPills"></div>
+      </div>
+      <!-- Right: booking card -->
+      <div class="det-book-card">
+        <div class="det-book-price" id="cardPrice">$0 <span>MXN</span></div>
+        <div class="det-book-duration" id="cardDuration">
+          <i class="fa-regular fa-clock"></i> <span>—</span>
+        </div>
+        <button class="btn-book-main" id="btnOpenForm">
+          <i class="fa-solid fa-calendar-plus"></i> Agendar este servicio
+        </button>
+        <a href="#" class="btn-book-wa" id="btnWa" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp
+        </a>
+        <div class="det-book-trust">
+          <div class="det-trust-item"><i class="fa-solid fa-shield-halved"></i> Productos certificados y seguros</div>
+          <div class="det-trust-item"><i class="fa-solid fa-user-check"></i> Personal especializado</div>
+          <div class="det-trust-item"><i class="fa-solid fa-rotate-left"></i> Cancelación flexible</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTENT ════════════════════════════════════════════ -->
+  <div class="det-content">
+    <!-- Left column -->
+    <div>
+      <!-- Benefits -->
+      <div class="det-section">
+        <h3><i class="fa-solid fa-star"></i> Beneficios</h3>
+        <div class="det-benefits-list" id="srvBenefits"></div>
+      </div>
+
+      <!-- Process -->
+      <div class="det-section">
+        <h3><i class="fa-solid fa-list-check"></i> ¿Qué incluye la sesión?</h3>
+        <div class="det-steps" id="srvSteps"></div>
+      </div>
+
+      <!-- Tags / ideal for -->
+      <div class="det-section">
+        <h3><i class="fa-solid fa-tag"></i> Ideal para</h3>
+        <div class="det-tags" id="srvTags"></div>
+      </div>
+    </div>
+
+    <!-- Right column: related services -->
+    <div>
+      <div class="det-section">
+        <h3><i class="fa-solid fa-spa"></i> También te puede interesar</h3>
+        <div class="det-related-grid" id="srvRelated"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ BOOKING MODAL ══════════════════════════════════════ -->
+  <div class="modal-overlay" id="modalBook">
+    <div class="modal-book">
+
+      <!-- Header -->
+      <div class="modal-book-header">
+        <div>
+          <h3>Agendar cita</h3>
+          <p id="modalSubtitle">GELESHA Spa · Lun–Sáb 9:00–17:00</p>
+        </div>
+        <button class="modal-close-btn" id="closeModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Steps bar -->
+      <div class="steps-bar" id="stepsBar">
+        <div class="step-dot active" id="sdot1">
+          <div class="step-dot-circle">1</div>
+          <div class="step-dot-label">Fecha</div>
+        </div>
+        <div class="step-line" id="sline1"></div>
+        <div class="step-dot" id="sdot2">
+          <div class="step-dot-circle">2</div>
+          <div class="step-dot-label">Hora</div>
+        </div>
+        <div class="step-line" id="sline2"></div>
+        <div class="step-dot" id="sdot3">
+          <div class="step-dot-circle">3</div>
+          <div class="step-dot-label">Datos</div>
+        </div>
+        <div class="step-line" id="sline3"></div>
+        <div class="step-dot" id="sdot4">
+          <div class="step-dot-circle">4</div>
+          <div class="step-dot-label">Confirmar</div>
+        </div>
+      </div>
+
+      <!-- Service banner -->
+      <div class="svc-banner">
+        <div>
+          <div class="svc-banner-name" id="bannerName">—</div>
+          <div class="svc-banner-sub"  id="bannerSub">—</div>
+        </div>
+        <div class="svc-banner-price" id="bannerPrice">$0</div>
+      </div>
+
+      <div class="modal-book-body">
+
+        <!-- ═══ STEP 1 — FECHA ═══ -->
+        <div class="step-panel active" id="step1">
+          <div class="cal-header">
+            <button class="cal-nav" id="calPrev"><i class="fa-solid fa-chevron-left"></i></button>
+            <span class="cal-month-label" id="calMonthLabel"></span>
+            <button class="cal-nav" id="calNext"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+          <div class="modal-nav">
+            <button class="btn-next" id="btnStep1" disabled>
+              Continuar <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ═══ STEP 2 — HORA ═══ -->
+        <div class="step-panel" id="step2">
+          <div class="date-summary show" id="dateSummary">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span id="dateSummaryText">—</span>
+            <span class="change-link" onclick="goToStep(1)">Cambiar</span>
+          </div>
+          <p class="time-section-title">Mañana</p>
+          <div class="time-grid" id="timeGridAM"></div>
+          <p class="time-section-title">Tarde</p>
+          <div class="time-grid" id="timeGridPM"></div>
+          <div class="modal-nav">
+            <button class="btn-back" onclick="goToStep(1)"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
+            <button class="btn-next" id="btnStep2" disabled>
+              Continuar <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ═══ STEP 3 — DATOS ═══ -->
+        <div class="step-panel" id="step3">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre completo *</label>
+              <input type="text" id="bNombre" placeholder="María García" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label>Teléfono *</label>
+              <input type="tel" id="bTelefono" placeholder="+52 998 000 0000" autocomplete="tel" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="bEmail" placeholder="correo@ejemplo.com" autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label>Notas / preferencias</label>
+            <textarea id="bNotas" rows="2" placeholder="¿Alguna condición especial o petición?"></textarea>
+          </div>
+          <div class="form-msg" id="formMsg"></div>
+          <div class="modal-nav">
+            <button class="btn-back" onclick="goToStep(2)"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
+            <button class="btn-next" id="btnStep3" onclick="goToStep(4)">
+              Revisar cita <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ═══ STEP 4 — CONFIRMAR ═══ -->
+        <div class="step-panel" id="step4">
+          <div class="confirm-box">
+            <div class="confirm-row">
+              <span>Servicio</span>
+              <span id="cfmServicio">—</span>
+            </div>
+            <div class="confirm-row">
+              <span>Fecha</span>
+              <span id="cfmFecha">—</span>
+            </div>
+            <div class="confirm-row">
+              <span>Hora</span>
+              <span id="cfmHora">—</span>
+            </div>
+            <div class="confirm-row">
+              <span>Nombre</span>
+              <span id="cfmNombre">—</span>
+            </div>
+            <div class="confirm-row">
+              <span>Teléfono</span>
+              <span id="cfmTelefono">—</span>
+            </div>
+            <div class="confirm-row">
+              <span>Precio</span>
+              <span id="cfmPrecio" style="color:#D08C37">—</span>
+            </div>
+          </div>
+          <div class="form-msg" id="formMsg2"></div>
+          <div class="modal-nav">
+            <button class="btn-back" onclick="goToStep(3)"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
+            <button class="btn-next btn-confirm" id="btnConfirm">
+              <i class="fa-solid fa-calendar-check"></i> Confirmar cita
+            </button>
+          </div>
+        </div>
+
+        <!-- ═══ SUCCESS ═══ -->
+        <div class="book-success" id="bookSuccess">
+          <div class="success-anim"><i class="fa-solid fa-check"></i></div>
+          <h3>¡Cita agendada! 🌿</h3>
+          <p>Tu solicitud fue enviada con éxito.</p>
+          <p>Te contactaremos para confirmar tu horario.</p>
+          <div class="success-detail" id="successDetail"></div>
+          <button class="btn-book-main" onclick="closeBookModal()" style="margin-top:4px;width:100%">
+            <i class="fa-solid fa-spa"></i> Listo
+          </button>
+        </div>
+
+      </div><!-- /modal-book-body -->
+    </div>
+  </div>
+
+  <!-- WhatsApp flotante -->
+  <a href="https://wa.me/529987388389" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script>
+  /* ══════════════════════════════════════════════════════
+     CATÁLOGO ENRIQUECIDO
+  ══════════════════════════════════════════════════════ */
+  const CATALOGO = [
+    {
+      id: 's01', cat:'Masaje', nombre:'Masaje Relajante', precio:850, tiempo:'80 min',
+      desc: 'Un viaje de relajación profunda que libera tensiones acumuladas y devuelve el equilibrio a tu cuerpo. Utilizamos aceites esenciales premium y técnicas suecas que calman el sistema nervioso y relajan cada músculo.',
+      benefits: ['Reduce el estrés y la ansiedad de forma inmediata','Alivia tensiones musculares y contracturas','Mejora la circulación sanguínea','Favorece el sueño reparador','Libera endorfinas naturales del bienestar'],
+      steps: [
+        { title: 'Bienvenida y consulta', desc: 'Evaluamos tus zonas de tensión y preferencias.' },
+        { title: 'Aplicación de aceites', desc: 'Aceites esenciales tibios seleccionados para tu tipo de piel.' },
+        { title: 'Técnica sueca completa', desc: 'Movimientos deslizantes y amasamiento de cuerpo completo.' },
+        { title: 'Relajación final', desc: 'Aromaterapia y tiempo de descanso para integrar el tratamiento.' },
+      ],
+      tags: ['Estrés', 'Primera visita', 'Relajación', 'Tensión muscular', 'Bienestar general'],
+    },
+    {
+      id: 's02', cat:'Masaje', nombre:'Masaje Tejido Profundo', precio:1400, tiempo:'80 min',
+      desc: 'Técnica terapéutica que trabaja las capas musculares profundas para liberar tensiones crónicas, nódulos y contracturas arraigadas. Ideal si llevas tiempo con dolor o rigidez persistente.',
+      benefits: ['Elimina nódulos y puntos de tensión profunda','Alivia dolor crónico de espalda y cuello','Mejora la movilidad articular','Recuperación post-esfuerzo','Rompe adherencias de tejido conjuntivo'],
+      steps: [
+        { title: 'Evaluación postural', desc: 'Identificamos zonas de tensión crónica y contracturas.' },
+        { title: 'Calentamiento superficial', desc: 'Preparamos los tejidos con presión progresiva.' },
+        { title: 'Trabajo profundo', desc: 'Técnicas de fricción y presión en capas musculares profundas.' },
+        { title: 'Estiramiento y cierre', desc: 'Estiramientos suaves para fijar los resultados.' },
+      ],
+      tags: ['Dolor crónico', 'Contracturas', 'Deportistas', 'Rigidez', 'Terapéutico'],
+    },
+    {
+      id: 's03', cat:'Masaje', nombre:'Masaje Piedras Calientes', precio:1400, tiempo:'80 min',
+      desc: 'La combinación del calor profundo de las piedras volcánicas con técnicas de masaje crea una experiencia única que funde tensiones y activa la energía vital del cuerpo.',
+      benefits: ['Calor profundo que relaja tejidos profundos','Desbloquea la circulación energética','Efecto desinflamatorio y analgésico','Profunda relajación muscular','Experiencia spa de lujo'],
+      steps: [
+        { title: 'Preparación de piedras', desc: 'Basalto volcánico calentado a temperatura óptima.' },
+        { title: 'Colocación en chakras', desc: 'Piedras sobre puntos energéticos clave del cuerpo.' },
+        { title: 'Masaje con piedras', desc: 'Deslizamiento de piedras calientes en músculos principales.' },
+        { title: 'Armonización final', desc: 'Equilibrio energético y descanso integrador.' },
+      ],
+      tags: ['Lujo', 'Energía', 'Frío', 'Relajación profunda', 'Especial'],
+    },
+    {
+      id: 's04', cat:'Masaje', nombre:'Masaje Deportivo', precio:1200, tiempo:'80 min',
+      desc: 'Diseñado para atletas y personas activas. Combina técnicas de preparación pre-evento y recuperación post-entrenamiento para maximizar el rendimiento y prevenir lesiones.',
+      benefits: ['Preparación muscular pre-competencia','Acelera la recuperación post-entrenamiento','Previene lesiones y micro-roturas','Mejora la flexibilidad y rango de movimiento','Elimina el ácido láctico acumulado'],
+      steps: [
+        { title: 'Evaluación deportiva', desc: 'Identificamos grupos musculares más exigidos.' },
+        { title: 'Activación circulatoria', desc: 'Fricciones y petrissage para activar flujo sanguíneo.' },
+        { title: 'Trabajo muscular específico', desc: 'Presión profunda en zonas de mayor carga.' },
+        { title: 'Estiramientos activos', desc: 'PNF y stretching para fijar la recuperación.' },
+      ],
+      tags: ['Deportistas', 'Recuperación', 'Prevención lesiones', 'Rendimiento', 'Post-entrenamiento'],
+    },
+    {
+      id: 's05', cat:'Masaje', nombre:'Drenaje Linfático Manual', precio:1350, tiempo:'80 min',
+      desc: 'Técnica suave y rítmica que estimula el sistema linfático para eliminar toxinas, reducir retención de líquidos y desinflamar el cuerpo. Ideal post-cirugía o para combatir la celulitis.',
+      benefits: ['Elimina retención de líquidos y edemas','Reduce celulitis y grasa localizada','Desintoxica el organismo','Ideal para post-operatorio','Refuerza el sistema inmune'],
+      steps: [
+        { title: 'Diagnóstico de retención', desc: 'Evaluamos zonas con mayor acumulación de líquidos.' },
+        { title: 'Maniobras de apertura', desc: 'Activamos los ganglios principales del sistema linfático.' },
+        { title: 'Drenaje completo', desc: 'Movimientos suaves y rítmicos en dirección linfática.' },
+        { title: 'Cierre y compresión', desc: 'Vendaje o compresión para potenciar el resultado.' },
+      ],
+      tags: ['Retención líquidos', 'Post-operatorio', 'Celulitis', 'Desintoxicación', 'Edemas'],
+    },
+    {
+      id: 's06', cat:'Masaje', nombre:'Masaje Sueco', precio:1100, tiempo:'80 min',
+      desc: 'El masaje clásico por excelencia. Combina cinco técnicas base — effleurage, petrissage, tapotement, fricción y vibración — para una experiencia completa de bienestar.',
+      benefits: ['Mejora la circulación general','Tonifica y relaja la musculatura','Libera tensiones superficiales','Estimula el sistema nervioso parasimpático','Oxigena los tejidos musculares'],
+      steps: [
+        { title: 'Evaluación inicial', desc: 'Revisamos estado general y zonas prioritarias.' },
+        { title: 'Effleurage y petrissage', desc: 'Deslizamientos largos y amasamiento profundo.' },
+        { title: 'Tapotement y fricción', desc: 'Percusiones y fricciones para tonificar.' },
+        { title: 'Vibración y cierre', desc: 'Vibraciones finas para relajar el sistema nervioso.' },
+      ],
+      tags: ['Clásico', 'Tonificación', 'Bienestar', 'Primera vez', 'Completo'],
+    },
+    {
+      id: 's07', cat:'Masaje', nombre:'Masaje Piernas Cansadas', precio:500, tiempo:'30 min',
+      desc: 'Tratamiento express enfocado en piernas y pies para aliviar la sensación de pesadez, mejorar el retorno venoso y descansar piernas que han trabajado todo el día.',
+      benefits: ['Alivia pesadez e hinchazón en piernas','Mejora el retorno venoso','Reduce calambres y hormigueos','Express y muy relajante','Ideal para personas que trabajan de pie'],
+      steps: [
+        { title: 'Exfoliación suave', desc: 'Eliminamos células muertas para mejor absorción.' },
+        { title: 'Aplicación de gel frío', desc: 'Gel refrescante con mentol y árnica.' },
+        { title: 'Masaje de retorno', desc: 'Movimientos ascendentes para activar retorno venoso.' },
+        { title: 'Elevación y descanso', desc: 'Posicionamiento elevado y vendaje frío opcional.' },
+      ],
+      tags: ['Express', 'Trabajo de pie', 'Varices', 'Hinchazón', 'Piernas'],
+    },
+    {
+      id: 's08', cat:'Masaje', nombre:'Masaje Chakras', precio:1100, tiempo:'60 min',
+      desc: 'Tratamiento holístico que trabaja los 7 centros energéticos del cuerpo usando técnicas de presión, cristales y aromaterapia específica para cada chakra. Reequilibra cuerpo, mente y espíritu.',
+      benefits: ['Reequilibra los centros energéticos','Reduce bloqueos emocionales','Profunda paz mental y claridad','Armoniza cuerpo físico y energético','Experiencia espiritual única'],
+      steps: [
+        { title: 'Diagnóstico energético', desc: 'Identificamos chakras bloqueados o hiperactivos.' },
+        { title: 'Colocación de cristales', desc: 'Piedras semipreciosas en cada centro energético.' },
+        { title: 'Masaje con aceites', desc: 'Aceites esenciales específicos por chakra.' },
+        { title: 'Meditación guiada', desc: 'Cierre con respiración consciente e integración.' },
+      ],
+      tags: ['Espiritual', 'Energía', 'Meditación', 'Holístico', 'Emocional'],
+    },
+    {
+      id: 's09', cat:'Masaje', nombre:'Masaje Ayurveda', precio:1350, tiempo:'90 min',
+      desc: 'Antigua medicina india aplicada al masaje moderno. El Abhyanga utiliza aceites herbales tibios y movimientos rítmicos sincronizados para nutrir la piel, equilibrar los doshas y promover longevidad.',
+      benefits: ['Nutre y rejuvenece la piel profundamente','Equilibra los tres doshas (Vata, Pitta, Kapha)','Activa puntos marma energéticos','Desintoxica el organismo','Longevidad y anti-envejecimiento'],
+      steps: [
+        { title: 'Diagnóstico dosha', desc: 'Determinamos tu constitución ayurvédica.' },
+        { title: 'Aceites personalizados', desc: 'Selección de aceites herbales según tu dosha.' },
+        { title: 'Abhyanga completo', desc: 'Masaje sincronizado de cuerpo completo con aceites calientes.' },
+        { title: 'Shirodara opcional', desc: 'Hilo de aceite tibio en el tercer ojo (si se incluye).' },
+      ],
+      tags: ['Ayurveda', 'Anti-edad', 'Holístico', 'Piel seca', 'Longevidad'],
+    },
+    {
+      id: 's10', cat:'Masaje', nombre:'Masaje Shantala', precio:850, tiempo:'40 min',
+      desc: 'Técnica de masaje originaria de la India, ideal para bebés y también adaptada para adultos. Favorece la conexión, el tacto consciente y la relajación profunda mediante movimientos suaves y envolventes.',
+      benefits: ['Conexión profunda cuerpo-mente','Movimientos envolventes ultra-relajantes','Ideal para sensibilidad alta','Nutre emocionalmente','Perfecto para quienes buscan suavidad'],
+      steps: [
+        { title: 'Contacto inicial', desc: 'Conexión suave y respetuosa con el cuerpo.' },
+        { title: 'Secuencia Shantala', desc: 'Serie de movimientos envolventes y rítmicos.' },
+        { title: 'Zonas energéticas', desc: 'Atención a plexo solar, corazón y cabeza.' },
+        { title: 'Integración', desc: 'Silencio y tiempo de absorción del tratamiento.' },
+      ],
+      tags: ['Suave', 'Sensibilidad', 'Emocional', 'Conexión', 'Bebés/Adultos'],
+    },
+    {
+      id: 's11', cat:'Masaje', nombre:'Masaje Terapéutico', precio:1000, tiempo:'60 min',
+      desc: 'Masaje clínico orientado a la recuperación funcional. Combina técnicas ortopédicas y miofasciales para tratar patologías específicas como contracturas, tortícolis, dolor lumbar y tensión cervical.',
+      benefits: ['Trata patologías musculo-esqueléticas','Alivia dolor lumbar y cervical','Rehabilitación post-lesión','Mejora la postura','Técnicas clínicas especializadas'],
+      steps: [
+        { title: 'Anamnesis clínica', desc: 'Historial de lesiones, posturas y dolor.' },
+        { title: 'Test de movilidad', desc: 'Evaluamos rango articular y puntos de dolor.' },
+        { title: 'Técnicas ortopédicas', desc: 'Inhibición, movilización y liberación miofascial.' },
+        { title: 'Plan de seguimiento', desc: 'Recomendaciones de ejercicios y próximas sesiones.' },
+      ],
+      tags: ['Clínico', 'Lumbalgia', 'Cervicalgia', 'Tortícolis', 'Rehabilitación'],
+    },
+    {
+      id: 's12', cat:'Masaje', nombre:'Yoga Facial', precio:700, tiempo:'30 min',
+      desc: 'Técnica express que combina masaje facial, acupresión y movimientos tonificantes para el rostro. Resulta en piel más firme, luminosa y con expresión relajada. El "botox natural".',
+      benefits: ['Tonifica y levanta los músculos faciales','Reduce tensión mandibular y cefaleas','Mejora la circulación facial','Disminuye arrugas de expresión','Efecto lifting natural inmediato'],
+      steps: [
+        { title: 'Limpieza y preparación', desc: 'Desmaquillaje y tonificación de la piel.' },
+        { title: 'Acupresión', desc: 'Presión en puntos específicos para drenar y activar.' },
+        { title: 'Ejercicios faciales', desc: 'Movimientos tonificantes en frente, mejillas y cuello.' },
+        { title: 'Masaje modelador', desc: 'Amasamiento y pellizcos para definir el óvalo facial.' },
+      ],
+      tags: ['Express', 'Anti-edad', 'Lifting', 'Mandíbula', 'Luminosidad'],
+    },
+    // FACIALES
+    {
+      id: 's13', cat:'Facial', nombre:'Dermapen', precio:1500, tiempo:'80 min',
+      desc: 'Microagujación controlada que estimula la producción natural de colágeno y elastina. Trata manchas, cicatrices de acné, poros dilatados y flacidez con resultados visibles desde la primera sesión.',
+      benefits: ['Estimula la producción de colágeno','Reduce manchas y cicatrices de acné','Minimiza poros dilatados','Efecto antienvejecimiento profundo','Mejora textura y luminosidad'],
+      steps: [
+        { title: 'Limpieza profunda', desc: 'Preparación completa de la piel.' },
+        { title: 'Aplicación de anestesia tópica', desc: 'Crema anestésica para minimizar molestias.' },
+        { title: 'Dermapen', desc: 'Microagujación con profundidad controlada según zona.' },
+        { title: 'Sérum regenerador', desc: 'Aplicación de activos de alta concentración.' },
+        { title: 'Cuidados post', desc: 'Protección solar y guía de cuidados en casa.' },
+      ],
+      tags: ['Cicatrices', 'Manchas', 'Poros', 'Colágeno', 'Anti-edad'],
+    },
+    {
+      id: 's14', cat:'Facial', nombre:'Limpieza Facial Profunda', precio:950, tiempo:'90 min',
+      desc: 'El ritual base de toda piel sana. Extracción profesional de puntos negros, espinillas e impurezas acompañada de exfoliación enzimática y mascarilla purificante para un cutis impecable.',
+      benefits: ['Piel radiante e impecable','Extracción profesional sin lesionar','Poros más refinados','Base para otros tratamientos','Previene el acné'],
+      steps: [
+        { title: 'Diagnóstico cutáneo', desc: 'Identificamos tu tipo y condición de piel.' },
+        { title: 'Doble limpieza', desc: 'Limpieza en profundidad con enzimas.' },
+        { title: 'Vapor y ablandamiento', desc: 'Vapor de ozono para abrir poros.' },
+        { title: 'Extracción manual', desc: 'Eliminación profesional de impurezas.' },
+        { title: 'Mascarilla y cierre', desc: 'Mascarilla purificante y tónico poro-minimizador.' },
+      ],
+      tags: ['Acné', 'Poros', 'Puntos negros', 'Básico', 'Mantenimiento'],
+    },
+    {
+      id: 's15', cat:'Facial', nombre:'Facial Antiedad', precio:950, tiempo:'90 min',
+      desc: 'Protocolo completo con activos de última generación: retinol, vitamina C, péptidos y ácido hialurónico. Combate las arrugas, pérdida de firmeza y apagamiento propios del paso del tiempo.',
+      benefits: ['Reduce arrugas finas y expresión','Recupera firmeza y elasticidad','Unifica el tono y luminosidad','Activos premium de alta concentración','Resultados visibles desde la 1ª sesión'],
+      steps: [
+        { title: 'Diagnóstico de edad cutánea', desc: 'Evaluamos envejecimiento, manchas y flacidez.' },
+        { title: 'Exfoliación química', desc: 'AHAs para renovar la superficie celular.' },
+        { title: 'Masaje tensor', desc: 'Técnicas de lifting manual y facial.' },
+        { title: 'Sérum y mascarilla', desc: 'Activos antiedad de alta penetración.' },
+        { title: 'Protección SPF', desc: 'Crema con factor de protección solar alto.' },
+      ],
+      tags: ['Arrugas', 'Flacidez', 'Anti-edad', '+35 años', 'Luminosidad'],
+    },
+    {
+      id: 's16', cat:'Facial', nombre:'Control Acné', precio:950, tiempo:'90 min',
+      desc: 'Protocolo especializado con ácidos exfoliantes, extractos antibacterianos y luz LED azul para tratar y controlar el acné activo, reducir inflamación y prevenir nuevas lesiones.',
+      benefits: ['Reduce lesiones activas de acné','Controla el exceso de sebo','Efecto antibacteriano profundo','Cicatriza sin dejar marcas','Equilibra el microbioma cutáneo'],
+      steps: [
+        { title: 'Análisis sebométrico', desc: 'Medición de sebo y estado del acné.' },
+        { title: 'Limpieza antibacteriana', desc: 'Protocolos específicos para piel acneica.' },
+        { title: 'Extracción controlada', desc: 'Solo cuando no hay inflamación activa.' },
+        { title: 'Luz LED azul', desc: '415nm para eliminar bacteria P. acnes.' },
+        { title: 'Tratamiento sebonormalizador', desc: 'Activos que regulan la producción de sebo.' },
+      ],
+      tags: ['Acné', 'Espinillas', 'Sebo', 'Adolescente/Adulto', 'Antibacteriano'],
+    },
+    {
+      id: 's17', cat:'Facial', nombre:'Facial Descongestivo', precio:950, tiempo:'90 min',
+      desc: 'Diseñado para pieles sensibles, reactivas o con rojeces. Calma la inflamación, reduce la cuperosis y refuerza la barrera cutánea con activos calmantes y antiinflamatorios.',
+      benefits: ['Calma rojeces y sensaciones de ardor','Refuerza la barrera de la piel','Reduce cuperosis y capilares','Ideal para piel con rosacea','Efecto calmante inmediato'],
+      steps: [
+        { title: 'Test de sensibilidad', desc: 'Evaluación de reactividad e irritantes.' },
+        { title: 'Limpieza ultra-suave', desc: 'Sin fricción, solo suaves emulsiones.' },
+        { title: 'Compresas frías', desc: 'Reducción de inflamación con temperatura.' },
+        { title: 'Mascarilla calmante', desc: 'Centella asiática, aloe y zinc para calmar.' },
+        { title: 'Barrera protectora', desc: 'Crema barrera y FPS para proteger la piel.' },
+      ],
+      tags: ['Piel sensible', 'Rojeces', 'Rosacea', 'Cuperosis', 'Reactiva'],
+    },
+    {
+      id: 's18', cat:'Facial', nombre:'Facial Despigmentante', precio:950, tiempo:'90 min',
+      desc: 'Protocolo intensivo contra manchas, melasma y hiperpigmentación. Combina exfoliación química, activos despigmentantes (niacinamida, arbutina, kojic) y protección solar para un tono uniforme.',
+      benefits: ['Elimina manchas y melasma','Unifica el tono de la piel','Previene nuevas hiperpigmentaciones','Activos blanqueadores certificados','Ilumina el complejo de la piel'],
+      steps: [
+        { title: 'Mapeo de manchas', desc: 'Identificación y clasificación de hiperpigmentaciones.' },
+        { title: 'Peeling despigmentante', desc: 'Ácidos específicos para inhibir melanina.' },
+        { title: 'Iontoforesis', desc: 'Penetración profunda de activos aclarantes.' },
+        { title: 'Mascarilla iluminadora', desc: 'Vitamina C, niacinamida y extractos naturales.' },
+        { title: 'Protección indispensable', desc: 'SPF 50+ obligatorio post-tratamiento.' },
+      ],
+      tags: ['Manchas', 'Melasma', 'Tono uniforme', 'Embarazo', 'Sol'],
+    },
+    {
+      id: 's19', cat:'Facial', nombre:'Facial Hidratante', precio:700, tiempo:'60 min',
+      desc: 'Tratamiento express de hidratación intensiva con ácido hialurónico, ceramidas y activos humectantes. Perfecto para pieles deshidratadas, apagadas o después de la exposición solar.',
+      benefits: ['Hidratación profunda e inmediata','Restaura la luminosidad','Suaviza la textura de la piel','Efecto "plumping" visible','Ideal para pieles secas y maduras'],
+      steps: [
+        { title: 'Limpieza exprés', desc: 'Limpieza suave para preparar la piel.' },
+        { title: 'Sérum de ácido hialurónico', desc: 'Aplicación de capas de HA multimolecular.' },
+        { title: 'Mascarilla oclusiva', desc: 'Mascarilla de ceramidas para fijar la hidratación.' },
+        { title: 'Crema y SPF', desc: 'Sellado con crema nutritiva y protección solar.' },
+      ],
+      tags: ['Piel seca', 'Hidratación', 'Express', 'Post-verano', 'Luminosidad'],
+    },
+    {
+      id: 's20', cat:'Facial', nombre:'Hidralips', precio:700, tiempo:'20 min',
+      desc: 'Tratamiento exprés y mimmimante para los labios. Exfoliación, hidratación profunda con ácido hialurónico y mascarilla nutritiva para unos labios suaves, voluminosos y definidos.',
+      benefits: ['Labios suaves e hidratados','Efecto voluminizador natural','Elimina piel reseca','Express de 20 minutos','Complemento perfecto del facial'],
+      steps: [
+        { title: 'Exfoliación de labios', desc: 'Scrub de azúcar para eliminar células muertas.' },
+        { title: 'Sérum de labios', desc: 'HA y péptidos para volumen e hidratación.' },
+        { title: 'Mascarilla oclusiva', desc: 'Parche hidratante de colageno.' },
+        { title: 'Lip balm nutritivo', desc: 'Sellado con aceites de argán y vitamina E.' },
+      ],
+      tags: ['Express', 'Labios', 'Hidratación', 'Complemento facial', 'Volumen'],
+    },
+    // APARATOLOGÍA
+    {
+      id: 's21', cat:'Aparatologia', nombre:'Cavitación', precio:900, tiempo:'50 min',
+      desc: 'Tecnología ultrasónica de baja frecuencia que destruye las membranas de las células adiposas de forma no invasiva. Elimina grasa localizada sin cirugía ni recuperación.',
+      benefits: ['Destruye células grasas de forma permanente','No invasivo, sin cirugía','Reduce medidas visiblemente','Activa el metabolismo de grasas','Complementa dieta y ejercicio'],
+      steps: [
+        { title: 'Medición de pliegues', desc: 'Marcamos zonas a tratar y medimos.' },
+        { title: 'Gel de contacto', desc: 'Gel conductor para transmitir el ultrasonido.' },
+        { title: 'Aplicación de cavitación', desc: '40kHz de ultrasonido sobre la zona adiposa.' },
+        { title: 'Drenaje post', desc: 'Drenaje linfático manual para eliminar residuos lipídicos.' },
+      ],
+      tags: ['Grasa localizada', 'Sin cirugía', 'Reducción medidas', 'Abdomen', 'Muslos'],
+    },
+    {
+      id: 's22', cat:'Aparatologia', nombre:'EMSCULPT (Abd, Glúteos o Piernas)', precio:700, tiempo:'30 min',
+      desc: 'Tecnología de campo electromagnético de alta intensidad que genera contracciones musculares supramáximas. Equivale a 20,000 abdominales en 30 minutos. Tonifica y fortalece sin esfuerzo.',
+      benefits: ['Tonificación muscular extrema','Equivale a miles de contracciones','Reduce grasa simultáneamente','Sin dolor y sin recuperación','Resultados visibles en pocas sesiones'],
+      steps: [
+        { title: 'Colocación del aplicador', desc: 'Dispositivo EMSCULPT en la zona seleccionada.' },
+        { title: 'Protocolo de contracciones', desc: 'Secuencia de contracciones y relajaciones.' },
+        { title: 'Fase de tonificación', desc: 'Vibraciones para eliminar ácido láctico.' },
+        { title: 'Evaluación post', desc: 'Medición y registro de la sesión.' },
+      ],
+      tags: ['Tonificación', 'Glúteos', 'Abdomen', 'Sin ejercicio', 'Rápido'],
+    },
+    {
+      id: 's23', cat:'Aparatologia', nombre:'Radio + Metalo o Madero', precio:1100, tiempo:'60 min',
+      desc: 'Combinación potente de radiofrecuencia para tensar la piel desde adentro con maderoterapia o metaloterapia para modelar el contorno corporal desde afuera. Resultados amplificados.',
+      benefits: ['Reafirma y tensa la piel','Reduce celulitis y piel de naranja','Modela el contorno corporal','Estimula colágeno y elastina','Complemento ideal post-cavitación'],
+      steps: [
+        { title: 'Evaluación corporal', desc: 'Identificamos zonas prioritarias de tratamiento.' },
+        { title: 'Radiofrecuencia', desc: 'Ondas RF para calentar el tejido dérmico profundo.' },
+        { title: 'Maderoterapia / Metaloterapia', desc: 'Herramientas para esculpir y drenar.' },
+        { title: 'Crema reafirmante', desc: 'Activos de cafeína y retinol para potenciar.' },
+      ],
+      tags: ['Celulitis', 'Reafirmar', 'Modelar', 'Piel de naranja', 'Colágeno'],
+    },
+    {
+      id: 's24', cat:'Aparatologia', nombre:'Presoterapia', precio:600, tiempo:'60 min',
+      desc: 'Masaje mecánico a través de botas de compresión que actúan sobre las piernas, mejorando el retorno venoso y linfático. Ideal para piernas pesadas, varices incipientes y celulitis.',
+      benefits: ['Activa el retorno venoso y linfático','Reduce hinchazón y pesadez','Previene varices','Elimina toxinas y retención','Muy relajante y placentero'],
+      steps: [
+        { title: 'Colocación de botas', desc: 'Aplicadores de compresión en piernas y abdomen.' },
+        { title: 'Programa personalizado', desc: 'Selección de presión y frecuencia según necesidad.' },
+        { title: 'Sesión de presoterapia', desc: '50 minutos de compresión intermitente progresiva.' },
+        { title: 'Medición post', desc: 'Evaluamos reducción de medidas en la sesión.' },
+      ],
+      tags: ['Piernas', 'Varices', 'Retención', 'Linfático', 'Relajante'],
+    },
+    {
+      id: 's25', cat:'Aparatologia', nombre:'Gimnasia Pasiva', precio:500, tiempo:'30 min',
+      desc: 'Electro-estimulación muscular (EMS) que contrae los músculos de forma controlada sin movimiento activo. Ideal para tonificar, recuperar masa muscular y complementar pérdida de peso.',
+      benefits: ['Tonificación sin esfuerzo físico','Recupera masa muscular','Ideal post-lesión o sedentarismo','Acelera el metabolismo basal','Complementa plan de adelgazamiento'],
+      steps: [
+        { title: 'Colocación de electrodos', desc: 'Parches de electro-estimulación en grupos musculares.' },
+        { title: 'Calibración de intensidad', desc: 'Ajustamos la corriente a tu tolerancia.' },
+        { title: 'Sesión EMS', desc: '30 minutos de contracciones controladas.' },
+        { title: 'Valoración', desc: 'Registro de progreso y plan de sesiones.' },
+      ],
+      tags: ['Tonificar', 'Sin esfuerzo', 'Post-lesión', 'Sedentarismo', 'EMS'],
+    },
+    {
+      id: 's26', cat:'Aparatologia', nombre:'Carboxiterapia', precio:500, tiempo:'30 min',
+      desc: 'Aplicación subcutánea de CO₂ medicinal que mejora la microcirculación, oxigena los tejidos y destruye células grasas. Ideal para ojeras, celulitis y rejuvenecimiento facial o corporal.',
+      benefits: ['Elimina ojeras y bolsas profundas','Destruye grasa localizada con CO₂','Mejora la microcirculación','Oxigena y rejuvenece tejidos','Resultados desde la 1ª sesión'],
+      steps: [
+        { title: 'Limpieza de la zona', desc: 'Asepsia de la piel a tratar.' },
+        { title: 'Microinyección de CO₂', desc: 'Agujas ultra-finas con gas medicinal.' },
+        { title: 'Masaje de distribución', desc: 'Masaje suave para distribuir el gas.' },
+        { title: 'Cuidados post', desc: 'Crema calmante y SPF si es zona facial.' },
+      ],
+      tags: ['Ojeras', 'Celulitis', 'CO₂', 'Microcirculación', 'Rejuvenecimiento'],
+    },
+    // REDUCTIVOS
+    {
+      id: 's27', cat:'Reductivo', nombre:'Reductivo Abdomen', precio:1300, tiempo:'90 min',
+      desc: 'Protocolo completo multimodal para reducir grasa abdominal: cavitación + radiofrecuencia + drenaje + vendaje. Resultados desde la primera sesión con reducción de centímetros medibles.',
+      benefits: ['Reduce grasa abdominal localizada','Resultados desde la 1ª sesión','Protocolo multi-tecnología','Reduce medidas en centímetros','Mejora el contorno y firmeza'],
+      steps: [
+        { title: 'Medición inicial', desc: 'Perimetría y fotos de progreso.' },
+        { title: 'Cavitación abdominal', desc: 'Ultrasonido para romper células grasas.' },
+        { title: 'Radiofrecuencia', desc: 'Reafirmación de piel y tejido.' },
+        { title: 'Drenaje linfático', desc: 'Eliminación de residuos lipídicos.' },
+        { title: 'Vendaje reductor', desc: 'Vendaje con activos reductores para potenciar.' },
+      ],
+      tags: ['Abdomen', 'Reducción', 'Grasa', 'Centímetros', 'Resultados rápidos'],
+    },
+    {
+      id: 's28', cat:'Reductivo', nombre:'Reductivo Piernas', precio:1300, tiempo:'90 min',
+      desc: 'Tratamiento completo para reducir grasa en muslos, caderas y piernas. Combina cavitación, presoterapia, drenaje y envolvimiento reafirmante para un resultado escultural.',
+      benefits: ['Reduce grasa en muslos y caderas','Combate la celulitis profunda','Mejora el retorno venoso','Piernas más estilizadas','Piel más firme y tersa'],
+      steps: [
+        { title: 'Medición de muslos y caderas', desc: 'Registro fotográfico y perimetría.' },
+        { title: 'Cavitación en piernas', desc: 'Ultrasonido en zona de mayor adiposidad.' },
+        { title: 'Presoterapia', desc: 'Activación del sistema linfático.' },
+        { title: 'Envolvimiento reductivo', desc: 'Cremas activas + film reafirmante.' },
+      ],
+      tags: ['Muslos', 'Caderas', 'Piernas', 'Celulitis', 'Estilizar'],
+    },
+    {
+      id: 's29', cat:'Reductivo', nombre:'Reductivo Brazos', precio:800, tiempo:'90 min',
+      desc: 'Protocolo específico para brazos flácidos o con exceso de grasa. Incluye cavitación localizada, radiofrecuencia tensor y ejercicios de activación para definir y tonificar.',
+      benefits: ['Define y tonifica los brazos','Reduce grasa en triceps','Mejora la flacidez','Piel más firme','Complementa plan nutricional'],
+      steps: [
+        { title: 'Medición de brazos', desc: 'Perimetría en zona de mayor volumen.' },
+        { title: 'Cavitación localizada', desc: 'Ultrasonido en triceps y zona interna.' },
+        { title: 'Radiofrecuencia', desc: 'Tensado de piel en toda la longitud del brazo.' },
+        { title: 'Crema reafirmante', desc: 'Activos de cafeína y retinol para sellar.' },
+      ],
+      tags: ['Brazos', 'Tríceps', 'Flacidez', 'Definición', 'Tonificación'],
+    },
+    {
+      id: 's30', cat:'Reductivo', nombre:'Reductivo Papada', precio:1100, tiempo:'90 min',
+      desc: 'Tratamiento específico para reducir la grasa submentoniana y reafirmar el contorno mandibular y cervical. Sin cirugía, con resultados notables en pocas sesiones.',
+      benefits: ['Reduce grasa en papada','Define el contorno mandibular','Reafirma la piel del cuello','Sin cirugía ni recuperación','Efecto lifting natural'],
+      steps: [
+        { title: 'Fotografía de perfil', desc: 'Registro fotográfico para evaluar progreso.' },
+        { title: 'Ultrasonido focal', desc: 'Cavitación específica en zona submentoniana.' },
+        { title: 'Radiofrecuencia facial', desc: 'Tensado del tejido del cuello y mandíbula.' },
+        { title: 'Masaje tensor', desc: 'Movimientos de levantamiento y drenaje.' },
+      ],
+      tags: ['Papada', 'Mandíbula', 'Cuello', 'Lifting', 'Sin cirugía'],
+    },
+    {
+      id: 's31', cat:'Reductivo', nombre:'Levantamiento de Glúteos', precio:1000, tiempo:'90 min',
+      desc: 'El tratamiento estrella. Combina EMSCULPT para tonificar el músculo glúteo, radiofrecuencia para reafirmar la piel y masajes modeladores para levantar y dar forma al glúteo.',
+      benefits: ['Levanta y da forma al glúteo','Tonifica el músculo glúteo','Reafirma piel de glúteos y piernas','Reduce celulitis en la zona','Resultados visibles en pocas sesiones'],
+      steps: [
+        { title: 'Medición y fotos', desc: 'Registro de contorno y posición inicial.' },
+        { title: 'EMSCULPT glúteos', desc: 'Contracciones supramáximas para tonificar músculo.' },
+        { title: 'Radiofrecuencia', desc: 'Tensado de piel y estimulación de colágeno.' },
+        { title: 'Maderoterapia', desc: 'Modelado del contorno con herramientas de madera.' },
+      ],
+      tags: ['Glúteos', 'Lifting', 'Tonificación', 'Modelado', 'Estrella'],
+    },
+    {
+      id: 's32', cat:'Reductivo', nombre:'Criolipólisis Abdomen', precio:1100, tiempo:'90 min',
+      desc: 'Técnica de congelación de células grasas (fat freeze) en el abdomen. Las células adiposas se cristalizan a -5°C y son eliminadas naturalmente por el organismo en las siguientes semanas.',
+      benefits: ['Elimina grasa de forma permanente','Fat freeze sin cirugía','Resultados progresivos en 4-8 semanas','No afecta tejidos adyacentes','Muy seguro y eficaz'],
+      steps: [
+        { title: 'Marcación de zona', desc: 'Delimitamos el área a tratar con gel protector.' },
+        { title: 'Colocación del aplicador', desc: 'Vacío controlado sobre la zona adiposa.' },
+        { title: 'Crioterapia', desc: '-5°C durante el tiempo del protocolo.' },
+        { title: 'Masaje post criolipólisis', desc: 'Masaje de 2 minutos para activar la apoptosis.' },
+      ],
+      tags: ['Fat freeze', 'Abdomen', 'Permanente', 'Sin cirugía', 'Frío'],
+    },
+    {
+      id: 's33', cat:'Reductivo', nombre:'Criolipólisis Piernas', precio:1100, tiempo:'90 min',
+      desc: 'Congelación selectiva de grasa en muslos y piernas. Perfecta para las "alforjas" o grasa de cara interna de muslos que no responde a dieta ni ejercicio.',
+      benefits: ['Elimina grasa de muslos','Trata las alforjas internas','Resultado permanente','No invasivo','Progresivo y natural'],
+      steps: [
+        { title: 'Marcación de muslos', desc: 'Identificamos zona de mayor volumen.' },
+        { title: 'Gel protector', desc: 'Membrana que protege la piel del frío.' },
+        { title: 'Crioterapia', desc: 'Aplicación a -5°C en muslos.' },
+        { title: 'Masaje activador', desc: 'Masaje para iniciar la apoptosis adipocitaria.' },
+      ],
+      tags: ['Muslos', 'Alforjas', 'Grasa interna', 'Permanente', 'Fat freeze'],
+    },
+    {
+      id: 's34', cat:'Reductivo', nombre:'Criolipólisis Brazos', precio:1100, tiempo:'90 min',
+      desc: 'Aplicación de criolipólisis específica para la zona de tríceps y cara interna del brazo. Elimina la grasa que no responde al ejercicio y afina el contorno del brazo.',
+      benefits: ['Elimina grasa de tríceps','Afina el contorno del brazo','Permanente y no invasivo','Sin tiempo de recuperación','Complementa el ejercicio'],
+      steps: [
+        { title: 'Evaluación del brazo', desc: 'Marcación y fotografía de la zona.' },
+        { title: 'Aplicador específico', desc: 'Aplicador de tamaño pequeño para brazo.' },
+        { title: 'Crioterapia', desc: 'Sesión a -5°C en tríceps.' },
+        { title: 'Masaje post', desc: 'Activación de la apoptosis celular.' },
+      ],
+      tags: ['Brazos', 'Tríceps', 'Grasa', 'Permanente', 'Fat freeze'],
+    },
+    {
+      id: 's35', cat:'Reductivo', nombre:'Reafirmante Abdomen', precio:900, tiempo:'90 min',
+      desc: 'Protocolo de reafirmación abdominal post-embarazo o post-adelgazamiento. Radiofrecuencia + tensado mecánico + cremas activas para recuperar la firmeza de la piel.',
+      benefits: ['Reafirma piel flácida del abdomen','Ideal post-embarazo','Estimula la producción de colágeno','Reduce estrías incipientes','Mejora la textura cutánea'],
+      steps: [
+        { title: 'Evaluación de flacidez', desc: 'Test de elasticidad y turgencia cutánea.' },
+        { title: 'Radiofrecuencia profunda', desc: 'Calentamiento del colágeno dérmico.' },
+        { title: 'Ultrasonido reafirmante', desc: 'HIFU de baja intensidad para fibroblastos.' },
+        { title: 'Mascarilla reafirmante', desc: 'Activos de retinol y vitamina C.' },
+      ],
+      tags: ['Flacidez', 'Post-embarazo', 'Colágeno', 'Estrías', 'Reafirmar'],
+    },
+    {
+      id: 's36', cat:'Reductivo', nombre:'Reafirmante Piernas', precio:900, tiempo:'90 min',
+      desc: 'Tratamiento tensor para piernas con pérdida de elasticidad. Combina radiofrecuencia, drenaje y envolvimiento para recuperar tonicidad y firmeza en muslos y pantorrillas.',
+      benefits: ['Tensa y reafirma la piel de piernas','Mejora la celulitis blanda','Activa la circulación','Piel más joven y tersa','Ideal para pérdidas de peso rápidas'],
+      steps: [
+        { title: 'Evaluación de elasticidad', desc: 'Test cutáneo en muslos y pantorrillas.' },
+        { title: 'Radiofrecuencia', desc: 'Tensado de piel en toda la pierna.' },
+        { title: 'Envolvimiento activo', desc: 'Cremas reafirmantes + film termoactivo.' },
+        { title: 'Masaje reafirmante', desc: 'Amasamiento y petrisage para tonificar.' },
+      ],
+      tags: ['Piernas', 'Flacidez', 'Tensado', 'Celulitis blanda', 'Muslos'],
+    },
+    {
+      id: 's37', cat:'Reductivo', nombre:'Reafirmante Brazos', precio:500, tiempo:'90 min',
+      desc: 'Tratamiento tensor y reafirmante para brazos flácidos. Ideal para personas que han bajado de peso o adultos mayores que quieren recuperar la firmeza de la piel en esta zona.',
+      benefits: ['Reafirma piel flácida de brazos','Muy asequible','Mejora la textura','Ideal post-adelgazamiento','Rápidos resultados visibles'],
+      steps: [
+        { title: 'Evaluación de flacidez', desc: 'Test de elasticidad en triceps.' },
+        { title: 'Radiofrecuencia de brazos', desc: 'RF en toda la longitud del brazo.' },
+        { title: 'Crema tensora', desc: 'Aplicación de activos reafirmantes.' },
+        { title: 'Masaje modelador', desc: 'Amasamiento para tonificar el tejido.' },
+      ],
+      tags: ['Brazos', 'Flacidez', 'Reafirmar', 'Post-dieta', 'Económico'],
+    },
+    {
+      id: 's38', cat:'Reductivo', nombre:'Anticelulitis Piernas', precio:750, tiempo:'90 min',
+      desc: 'Tratamiento específico de alta intensidad contra la celulitis. Combina tecnología de vacum, radiofrecuencia y activos anticelulíticos para romper los nódulos fibrosos y alisar la piel de naranja.',
+      benefits: ['Rompe nódulos de celulitis fibrótica','Alisa la piel de naranja','Activa la microcirculación','Drenaje de toxinas acumuladas','Piernas más lisas y definidas'],
+      steps: [
+        { title: 'Evaluación de grados', desc: 'Clasificamos el tipo y grado de celulitis.' },
+        { title: 'Vacum-terapia', desc: 'Masaje mecánico con succión para romper nódulos.' },
+        { title: 'Radiofrecuencia', desc: 'Calor para activar la circulación dérmica.' },
+        { title: 'Activos anticelulíticos', desc: 'Cafeína, escina y retinol para remodelar.' },
+      ],
+      tags: ['Celulitis', 'Piel de naranja', 'Muslos', 'Nódulos', 'Anticelulítico'],
+    },
+    // DEPILACIÓN
+    { id:'s39', cat:'Depilacion', nombre:'Depilación Brazo', precio:650, tiempo:'30 min', desc:'Depilación completa del brazo con cera tibia o fría de alta calidad. Piel suave y libre por semanas.', benefits:['Piel suave hasta 4 semanas','Vello más fino en cada sesión','Técnica rápida y precisa','Ceras de calidad premium','Sin irritación'],steps:[{title:'Preparación de la piel',desc:'Limpieza y talco para proteger la piel.'},{title:'Aplicación de cera',desc:'Cera tibia en el sentido del vello.'},{title:'Extracción',desc:'Retirada rápida contra el crecimiento del vello.'},{title:'Calmante post',desc:'Gel de aloe vera para calmar la piel.'}],tags:['Brazo completo','Femenino','Rápido','Cera']},
+    { id:'s40', cat:'Depilacion', nombre:'Depilación Antebrazo', precio:650, tiempo:'30 min', desc:'Depilación de antebrazo con técnica de cera profesional para una piel sedosa y sin vello por semanas.', benefits:['Piel suave y libre','Técnica rápida','Cera profesional','Larga duración','Vello más fino'],steps:[{title:'Limpieza',desc:'Preparación con talco protector.'},{title:'Cera tibia',desc:'Aplicación en sentido del vello.'},{title:'Extracción',desc:'Retirada precisa.'},{title:'Post-cuidado',desc:'Aloe vera calmante.'}],tags:['Antebrazo','Mujer','Cera','Rápido']},
+    { id:'s41', cat:'Depilacion', nombre:'Depilación Muslo', precio:750, tiempo:'30 min', desc:'Depilación de muslos con cera caliente para resultados duraderos y piel perfectamente suave.', benefits:['Piel suave en muslos','Técnica de cera caliente','Larga duración','Reduce el grosor del vello','Rápida y eficaz'],steps:[{title:'Preparación',desc:'Limpieza y exfoliación suave.'},{title:'Cera caliente',desc:'Para vellos más resistentes del muslo.'},{title:'Extracción',desc:'Retirada en sentido contrario al vello.'},{title:'Calmante',desc:'Crema post-depilación calmante.'}],tags:['Muslos','Cera caliente','Piernas','Mujer']},
+    { id:'s42', cat:'Depilacion', nombre:'Depilación Media Pierna', precio:750, tiempo:'30 min', desc:'Depilación de media pierna (de rodilla hacia abajo) con cera de alta calidad.', benefits:['Piel suave','Técnica precisa','Duración 3-4 semanas','Cera premium','Calmante incluido'],steps:[{title:'Preparación',desc:'Talco y limpieza de la zona.'},{title:'Aplicación',desc:'Cera tibia o caliente según el vello.'},{title:'Retirada',desc:'Extracción precisa y rápida.'},{title:'Post-depilación',desc:'Gel calmante y aceite post.'}],tags:['Media pierna','Cera','Rápido','Mujer']},
+    { id:'s43', cat:'Depilacion', nombre:'Depilación Pierna Completa', precio:900, tiempo:'30 min', desc:'Depilación completa de ambas piernas (desde tobillo hasta cadera) con cera caliente de alta durabilidad.', benefits:['Piernas perfectamente suaves','Tratamiento completo','Larga duración','Cera de alta adherencia','Resultado impecable'],steps:[{title:'Preparación',desc:'Limpieza y preparación de toda la pierna.'},{title:'Cera caliente',desc:'Aplicación sección por sección.'},{title:'Extracción completa',desc:'Retirada precisa en toda la pierna.'},{title:'Hidratación post',desc:'Crema hidratante y calmante.'}],tags:['Pierna completa','Cera caliente','Clásico','Mujer']},
+    { id:'s44', cat:'Depilacion', nombre:'Depilación Abdomen', precio:750, tiempo:'30 min', desc:'Depilación del área abdominal con cera tibia. Incluye la línea alba y zona periumbilical.', benefits:['Abdomen sin vello','Cera suave y segura','Zona íntima protegida','Técnica precisa','Larga duración'],steps:[{title:'Preparación',desc:'Limpieza y talco en la zona.'},{title:'Cera tibia',desc:'Aplicación con espátula desechable.'},{title:'Extracción',desc:'Retirada en sentido contrario.'},{title:'Calmante',desc:'Gel aloe vera post-depilación.'}],tags:['Abdomen','Línea alba','Cera','Mujer']},
+    { id:'s45', cat:'Depilacion', nombre:'Depilación Espalda Alta', precio:700, tiempo:'30 min', desc:'Depilación de la parte superior de la espalda con cera caliente para vello grueso o abundante.', benefits:['Espalda libre de vello','Cera caliente para vello resistente','Larga duración','Seguro y eficaz','Incluye zona de hombros'],steps:[{title:'Preparación',desc:'Limpieza y protección de la piel.'},{title:'Cera caliente',desc:'Para vello más grueso de la espalda.'},{title:'Extracción precisa',desc:'Retirada completa en la zona.'},{title:'Calmante',desc:'Gel post para calmar la piel.'}],tags:['Espalda','Hombros','Cera caliente','Hombre/Mujer']},
+    { id:'s46', cat:'Depilacion', nombre:'Depilación Espalda Baja', precio:700, tiempo:'30 min', desc:'Depilación de la zona lumbar y parte baja de la espalda. Zona común en hombres y mujeres que buscan piel libre de vello.', benefits:['Zona lumbar sin vello','Técnica precisa','Larga duración','Para hombre y mujer','Cera de alta adherencia'],steps:[{title:'Preparación',desc:'Posición cómoda boca abajo.'},{title:'Cera',desc:'Aplicación en zona lumbar.'},{title:'Extracción',desc:'Retirada rápida y eficaz.'},{title:'Post-cuidado',desc:'Crema calmante post.'}],tags:['Espalda baja','Lumbar','Hombre/Mujer','Cera']},
+    { id:'s47', cat:'Depilacion', nombre:'Depilación Glúteos', precio:650, tiempo:'30 min', desc:'Depilación del área de glúteos con cera tibia y técnica precisa para máxima comodidad.', benefits:['Zona libre de vello','Técnica discreta y profesional','Larga duración','Cera suave','Muy solicitado'],steps:[{title:'Preparación',desc:'Privacidad y limpieza de la zona.'},{title:'Cera tibia',desc:'Aplicación cuidadosa en glúteos.'},{title:'Extracción',desc:'Retirada precisa.'},{title:'Calmante',desc:'Gel suave post-depilación.'}],tags:['Glúteos','Íntimo','Cera','Discreta']},
+    { id:'s48', cat:'Depilacion', nombre:'Depilación Cara Completa', precio:600, tiempo:'30 min', desc:'Depilación completa del rostro: bigote, mentón, patillas y mejillas. Técnica de hilo y cera para máxima precisión.', benefits:['Rostro libre de vello','Técnica de hilo y cera','Muy precisa','Dura más que el rasurado','Piel más fina y luminosa'],steps:[{title:'Limpieza del rostro',desc:'Tónico y preparación.'},{title:'Técnica de hilo',desc:'Para zonas delicadas de la cara.'},{title:'Cera de azúcar',desc:'Para zonas de mayor vello.'},{title:'Calmante',desc:'Crema calmante y FPS.'}],tags:['Cara completa','Hilo','Cera azúcar','Vello facial','Mujer']},
+    { id:'s49', cat:'Depilacion', nombre:'Depilación Bikini Brasileño', precio:800, tiempo:'30 min', desc:'Depilación íntima completa con técnica brasileña. Eliminación total del vello en zona púbica, perianal y zona íntima con cera caliente de alta adherencia.', benefits:['Eliminación total del vello íntimo','Técnica brasileña profesional','Máxima higiene y privacidad','Larga duración 3-4 semanas','Personal especializado femenino'],steps:[{title:'Preparación',desc:'Limpieza, talco y posición cómoda.'},{title:'Cera caliente',desc:'Alta adherencia para zona íntima.'},{title:'Extracción precisa',desc:'Técnica brasileña con tiras.'},{title:'Post-íntimo',desc:'Gel calmante y aceite de tea tree.'}],tags:['Brasileño','Íntimo','Completo','Cera caliente','Privacidad']},
+    { id:'s50', cat:'Depilacion', nombre:'Depilación Patilla', precio:250, tiempo:'30 min', desc:'Depilación de las patillas con técnica de hilo para un acabado ultra-preciso y definido.', benefits:['Patillas perfectamente definidas','Técnica de hilo precisa','Express','Económico','Dura más que rasurado'],steps:[{title:'Limpieza',desc:'Tónico para preparar la zona.'},{title:'Técnica de hilo',desc:'Precisión máxima en el contorno.'},{title:'Calmante',desc:'Gel post para calmar la piel.'}],tags:['Express','Hilo','Cara','Económico']},
+    { id:'s51', cat:'Depilacion', nombre:'Depilación Bigote', precio:250, tiempo:'30 min', desc:'Depilación del bigote con técnica de hilo o cera de azúcar. Resultado limpio y preciso sin irritación.', benefits:['Zona libre de vello','Técnica precisa','Sin irritación','Express','Dura más que rasurado'],steps:[{title:'Limpieza',desc:'Preparación de la zona.'},{title:'Hilo o cera azúcar',desc:'Según el tipo de vello.'},{title:'Calmante',desc:'Crema suave post.'}],tags:['Bigote','Hilo','Cera azúcar','Express','Económico']},
+    { id:'s52', cat:'Depilacion', nombre:'Depilación Mentón', precio:250, tiempo:'30 min', desc:'Depilación del área del mentón con técnica de hilo. Ideal para mujeres con vello hormonal en esta zona.', benefits:['Mentón libre de vello','Sin irritación','Técnica precisa','Express','Económico'],steps:[{title:'Limpieza',desc:'Tónico previo.'},{title:'Técnica de hilo',desc:'Precisión en el contorno del mentón.'},{title:'Post-cuidado',desc:'Crema calmante.'}],tags:['Mentón','Hilo','Hormonal','Express','Mujer']},
+    { id:'s53', cat:'Depilacion', nombre:'Depilación Cuello', precio:250, tiempo:'30 min', desc:'Depilación del cuello con cera tibia. Ideal para hombres que desean un acabado perfecto entre cortes de cabello.', benefits:['Cuello perfecto y limpio','Ideal entre cortes','Larga duración','Técnica rápida','Económico'],steps:[{title:'Preparación',desc:'Limpieza y talco.'},{title:'Cera tibia',desc:'Aplicación en zona del cuello.'},{title:'Extracción',desc:'Retirada precisa.'},{title:'Calmante',desc:'Gel post depilación.'}],tags:['Cuello','Hombre','Express','Económico']},
+    { id:'s54', cat:'Depilacion', nombre:'Depilación Axilas', precio:500, tiempo:'30 min', desc:'Depilación de axilas con cera caliente o técnica de azúcar para un resultado duradero y sin irritación.', benefits:['Axilas suaves y limpias','Larga duración','Reduce pigmentación','Vello más fino','Técnica rápida'],steps:[{title:'Preparación',desc:'Limpieza y exfoliación de la axila.'},{title:'Cera caliente',desc:'Para vello corto y resistente.'},{title:'Extracción',desc:'Retirada en sentido contrario al vello.'},{title:'Calmante',desc:'Gel y crema post-depilación.'}],tags:['Axilas','Cera','Pigmentación','Clásico','Mujer']},
+    { id:'s55', cat:'Depilacion', nombre:'Depilación Senos / Pecho', precio:500, tiempo:'30 min', desc:'Depilación del área del pecho con técnica segura y discreta. Para hombres o mujeres con vello en zona del escote.', benefits:['Escote libre de vello','Técnica discreta','Para hombre y mujer','Cera de calidad','Larga duración'],steps:[{title:'Preparación',desc:'Limpieza y protección de la zona.'},{title:'Cera tibia',desc:'Aplicación cuidadosa.'},{title:'Extracción',desc:'Retirada precisa.'},{title:'Calmante',desc:'Crema post.'}],tags:['Pecho','Escote','Hombre/Mujer','Cera']},
+    { id:'s56', cat:'Depilacion', nombre:'Depilación Bikini (Pubis)', precio:600, tiempo:'30 min', desc:'Depilación de la línea del bikini y zona del pubis con cera caliente. Mantiene el vello interno pero elimina lo que sobresale del bikini.', benefits:['Línea de bikini perfecta','Técnica precisa','Privacidad garantizada','Larga duración','Cera de alta adherencia'],steps:[{title:'Preparación íntima',desc:'Limpieza y talco protector.'},{title:'Cera caliente',desc:'Zona pubis y línea de bikini.'},{title:'Extracción',desc:'Retirada precisa.'},{title:'Post-íntimo',desc:'Gel calmante y aceite tea tree.'}],tags:['Bikini','Íntimo','Pubis','Cera','Playa']},
+    { id:'s57', cat:'Depilacion', nombre:'Depilación Cuerpo Completo', precio:1500, tiempo:'60 min', desc:'Paquete de depilación integral: piernas completas, brazos completos, axilas, bikini brasileño y zona abdominal. El mejor valor para quien quiere piel 100% libre de vello.', benefits:['Depilación total del cuerpo','Mejor precio por zonas','Sesión única y completa','Personal especializado','Resultado impecable'],steps:[{title:'Consulta y preparación',desc:'Evaluar zonas y preferencias.'},{title:'Depilación por secciones',desc:'Piernas, brazos, axilas, íntimo.'},{title:'Revisión completa',desc:'Asegurar que no quede vello.'},{title:'Post-depilación',desc:'Hidratación completa del cuerpo.'}],tags:['Cuerpo completo','Paquete','Mejor valor','Integral','Completo']},
+    // OTROS
+    { id:'s58', cat:'Otros', nombre:'Reflexología de Manos', precio:500, tiempo:'50 min', desc:'Técnica terapéutica que trabaja los puntos reflejos de las manos para equilibrar órganos y sistemas del cuerpo. Muy relajante y eficaz para estrés y tensiones.', benefits:['Equilibra órganos internos','Muy relajante','No invasivo','Reduce el estrés','Mejora la circulación'],steps:[{title:'Diagnóstico reflexológico',desc:'Identificamos zonas reactivas en las manos.'},{title:'Presión en puntos reflejos',desc:'Técnica de presión con pulgares.'},{title:'Masaje de integración',desc:'Masaje final de manos y muñecas.'},{title:'Recomendaciones',desc:'Consejos para continuar en casa.'}],tags:['Reflexología','Manos','Holístico','Estrés','Órganos']},
+    { id:'s59', cat:'Otros', nombre:'Reflexología de Pies', precio:500, tiempo:'50 min', desc:'La reflexología podal trabaja todos los puntos reflejos del cuerpo ubicados en los pies. Alivia el estrés, mejora la digestión, el sueño y el bienestar general de forma natural.', benefits:['Alivia el estrés profundamente','Mejora la digestión y el sueño','Equilibra el sistema nervioso','Activa la circulación','Bienestar integral'],steps:[{title:'Baño de pies',desc:'Inmersión en agua tibia con sales.'},{title:'Diagnóstico reflexológico',desc:'Identificación de zonas reactivas.'},{title:'Reflexología completa',desc:'Trabajo de todos los puntos reflejos.'},{title:'Masaje de cierre',desc:'Masaje relajante de pies y tobillos.'}],tags:['Reflexología','Pies','Sueño','Digestión','Bienestar']},
+    { id:'s60', cat:'Otros', nombre:'Exfoliación de Pies', precio:500, tiempo:'30 min', desc:'Tratamiento de belleza y bienestar para los pies: exfoliación de callosidades, hidratación intensiva y masaje relajante. Pies suaves y perfectos.', benefits:['Elimina callosidades','Pies suaves e hidratados','Masaje incluido','Aspecto cuidado','Express y económico'],steps:[{title:'Baño de pies',desc:'Remojo con sales esfoliantes.'},{title:'Exfoliación mecánica',desc:'Piedra pómez y scrub en callosidades.'},{title:'Mascarilla de pies',desc:'Hidratación intensiva con urea.'},{title:'Masaje y calcetines',desc:'Masaje final y calcetines de algodón.'}],tags:['Pies','Callosidades','Hidratación','Express','Belleza']},
+    { id:'s61', cat:'Otros', nombre:'Manos y Pies de Seda', precio:900, tiempo:'30 min', desc:'Ritual de belleza completo para manos y pies: exfoliación, hidratación intensiva con parafina o mascarilla, masaje y acabado con aceites nutritivos para una piel sedosa.', benefits:['Manos y pies perfectamente suaves','Parafina hidratante profunda','Masaje incluido','Uñas lucen más sanas','Ritual de lujo'],steps:[{title:'Exfoliación',desc:'Scrub de manos y pies.'},{title:'Baño de parafina',desc:'Parafina tibia para hidratación profunda.'},{title:'Mascarilla nutritiva',desc:'Activos de mantequilla de karité.'},{title:'Masaje y acabado',desc:'Masaje y aceites nutritivos finales.'}],tags:['Manos','Pies','Parafina','Lujo','Sedosos']},
+  ];
+
+  const WA_NUMBER = '529987388389';
+  const fmt = n => `$${Number(n).toLocaleString('es-MX',{minimumFractionDigits:0})}`;
+
+  const CAT_CONFIG = {
+    Masaje:       { label:'Masajes',       icon:'fa-hand-dots',           bg:'rgba(139,79,139,.12)', color:'#8B4F8B' },
+    Facial:       { label:'Faciales',      icon:'fa-face-smile-beam',     bg:'rgba(208,140,55,.12)', color:'#D08C37' },
+    Aparatologia: { label:'Aparatología',  icon:'fa-bolt',                bg:'rgba(91,143,212,.12)', color:'#5b8fd4' },
+    Reductivo:    { label:'Reductivos',    icon:'fa-wand-magic-sparkles', bg:'rgba(42,157,143,.12)', color:'#2a9d8f' },
+    Depilacion:   { label:'Depilación',    icon:'fa-leaf',                bg:'rgba(192,96,128,.12)', color:'#c06080' },
+    Otros:        { label:'Otros',         icon:'fa-spa',                 bg:'rgba(192,128,74,.12)', color:'#c0804a' },
+  };
+
+  /* ── GET SERVICE FROM URL ─────────────────────────────── */
+  const params  = new URLSearchParams(window.location.search);
+  const srvId   = params.get('id');
+  const srv     = CATALOGO.find(s => s.id === srvId);
+
+  if (!srv) {
+    document.getElementById('srvTitle').textContent = 'Servicio no encontrado';
+    document.getElementById('srvDesc').textContent  = 'Regresa al catálogo para elegir un servicio.';
+  } else {
+    renderService(srv);
+  }
+
+  function renderService(s) {
+    const cfg = CAT_CONFIG[s.cat] || CAT_CONFIG.Otros;
+
+    // Meta
+    document.getElementById('pageTitle').textContent = `${s.nombre} — GELESHA Spa`;
+    document.getElementById('pageDesc').setAttribute('content', s.desc);
+
+    // Breadcrumb
+    document.getElementById('breadCat').textContent = cfg.label;
+
+    // Badge
+    const badge = document.getElementById('catBadge');
+    badge.style.background = cfg.bg;
+    badge.style.color = cfg.color;
+    badge.innerHTML = `<i class="fa-solid ${cfg.icon}"></i> ${cfg.label}`;
+
+    // Hero
+    document.getElementById('srvTitle').textContent = s.nombre;
+    document.getElementById('srvDesc').textContent  = s.desc;
+
+    // Pills
+    const pills = document.getElementById('srvPills');
+    const pillsData = [
+      { icon:'fa-clock', text: s.tiempo },
+      { icon:'fa-tag',   text: fmt(s.precio) },
+      { icon:'fa-shield-halved', text: 'Certificado' },
+    ];
+    pills.innerHTML = pillsData.map(p =>
+      `<div class="det-pill"><i class="fa-solid ${p.icon}"></i>${p.text}</div>`
+    ).join('');
+
+    // Card
+    document.getElementById('cardPrice').innerHTML = `${fmt(s.precio)} <span>MXN</span>`;
+    document.getElementById('cardDuration').innerHTML =
+      `<i class="fa-regular fa-clock"></i><span>${s.tiempo} de sesión</span>`;
+
+    // WA link
+    const waMsg = encodeURIComponent(`Hola GELESHA! 🌿 Me gustaría agendar:\n✨ Servicio: ${s.nombre}\n💰 Precio: ${fmt(s.precio)}\n\n¿Cuál es su disponibilidad?`);
+    document.getElementById('btnWa').href = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
+
+    // Modal subtitle (header)
+    document.getElementById('modalSubtitle').textContent = `GELESHA Spa · Lun–Sáb 9:00–17:00`;
+
+    // Benefits
+    document.getElementById('srvBenefits').innerHTML = (s.benefits || []).map(b =>
+      `<div class="det-benefit"><i class="fa-solid fa-check-circle"></i><span>${b}</span></div>`
+    ).join('');
+
+    // Steps
+    document.getElementById('srvSteps').innerHTML = (s.steps || []).map((st, i) =>
+      `<div class="det-step">
+        <div class="det-step-num">${i+1}</div>
+        <div class="det-step-text"><strong>${st.title}</strong><span>${st.desc}</span></div>
+      </div>`
+    ).join('');
+
+    // Tags
+    document.getElementById('srvTags').innerHTML = (s.tags || []).map(t =>
+      `<span class="det-tag">${t}</span>`
+    ).join('');
+
+    // Related (same category, different service, max 5)
+    const related = CATALOGO.filter(r => r.cat === s.cat && r.id !== s.id).slice(0, 5);
+    document.getElementById('srvRelated').innerHTML = related.map(r =>
+      `<a href="servicio.html?id=${r.id}" class="det-related-item">
+        <div>
+          <div class="det-related-name">${r.nombre}</div>
+          <div class="det-related-time"><i class="fa-regular fa-clock"></i> ${r.tiempo}</div>
+        </div>
+        <div class="det-related-price">${fmt(r.precio)}</div>
+      </a>`
+    ).join('');
+  }
+
+  /* ══════════════════════════════════════════════════════
+     BOOKING FLOW — State
+  ══════════════════════════════════════════════════════ */
+  const booking = {
+    step: 1,
+    date: null,        // JS Date object
+    dateStr: '',       // 'YYYY-MM-DD'
+    time: '',          // '09:00'
+    nombre: '',
+    telefono: '',
+    email: '',
+    notas: '',
+  };
+
+  /* Calendar state */
+  let calYear, calMonth;
+
+  const MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                     'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const DAYS_ES   = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+
+  /* Time slots 09:00 – 17:00 every 30 min */
+  const ALL_SLOTS = [];
+  for (let h = 9; h < 17; h++) {
+    ALL_SLOTS.push(`${String(h).padStart(2,'0')}:00`);
+    ALL_SLOTS.push(`${String(h).padStart(2,'0')}:30`);
+  }
+  // AM = 09:00–12:30, PM = 13:00–16:30
+  const SLOTS_AM = ALL_SLOTS.filter(t => parseInt(t) < 13);
+  const SLOTS_PM = ALL_SLOTS.filter(t => parseInt(t) >= 13);
+
+  function fmt12(t) {
+    const [h, m] = t.split(':').map(Number);
+    const ampm = h < 12 ? 'am' : 'pm';
+    const h12  = h % 12 || 12;
+    return `${h12}:${String(m).padStart(2,'0')} ${ampm}`;
+  }
+
+  /* ── OPEN MODAL ──────────────────────────────────────── */
+  document.getElementById('btnOpenForm')?.addEventListener('click', openBookModal);
+
+  function openBookModal() {
+    if (!srv) return;
+    // Reset state
+    Object.assign(booking, { step:1, date:null, dateStr:'', time:'', nombre:'', telefono:'', email:'', notas:'' });
+    // Init calendar to current month
+    const now = new Date();
+    calYear  = now.getFullYear();
+    calMonth = now.getMonth();
+    // Banner
+    document.getElementById('bannerName').textContent  = srv.nombre;
+    document.getElementById('bannerSub').textContent   = `${srv.tiempo} · ${CAT_CONFIG[srv.cat]?.label || srv.cat}`;
+    document.getElementById('bannerPrice').textContent = fmt(srv.precio);
+    // Reset form fields
+    ['bNombre','bTelefono','bEmail','bNotas'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    // Reset messages
+    ['formMsg','formMsg2'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.className = 'form-msg';
+    });
+    // Hide success
+    document.getElementById('bookSuccess').classList.remove('show');
+    // Show steps
+    document.getElementById('stepsBar').style.display = '';
+    document.querySelectorAll('.step-panel').forEach(p => { p.classList.remove('active'); p.style.display = ''; });
+    // Render first step
+    renderCalendar();
+    showStep(1);
+    document.getElementById('modalBook').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  document.getElementById('closeModal')?.addEventListener('click', closeBookModal);
+  document.getElementById('modalBook')?.addEventListener('click', e => {
+    if (e.target === document.getElementById('modalBook')) closeBookModal();
+  });
+
+  function closeBookModal() {
+    document.getElementById('modalBook').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ── STEP NAVIGATION ─────────────────────────────────── */
+  function showStep(n) {
+    booking.step = n;
+    // Panels
+    for (let i = 1; i <= 4; i++) {
+      const panel = document.getElementById('step' + i);
+      if (panel) panel.classList.toggle('active', i === n);
+    }
+    // Step dots
+    for (let i = 1; i <= 4; i++) {
+      const dot  = document.getElementById('sdot' + i);
+      const line = document.getElementById('sline' + i);
+      if (!dot) continue;
+      dot.classList.toggle('active', i === n);
+      dot.classList.toggle('done',   i < n);
+      if (line) line.classList.toggle('done', i < n);
+    }
+    // Fill confirm on step 4
+    if (n === 4) fillConfirm();
+  }
+
+  // Expose for inline onclick
+  window.goToStep = function(n) { showStep(n); };
+
+  /* ── STEP 1: CALENDAR ────────────────────────────────── */
+  function renderCalendar() {
+    const today = new Date(); today.setHours(0,0,0,0);
+    const label = document.getElementById('calMonthLabel');
+    const grid  = document.getElementById('calGrid');
+    if (!label || !grid) return;
+
+    label.textContent = `${MONTHS_ES[calMonth]} ${calYear}`;
+
+    const firstDay = new Date(calYear, calMonth, 1).getDay(); // 0=Sun
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+    // Day headers
+    let html = DAYS_ES.map(d => `<div class="cal-day-name">${d}</div>`).join('');
+
+    // Empty cells before first day
+    for (let i = 0; i < firstDay; i++) html += `<div class="cal-day empty"></div>`;
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(calYear, calMonth, d);
+      date.setHours(0,0,0,0);
+      const iso  = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const isPast    = date < today;
+      const isSunday  = date.getDay() === 0;   // closed on Sundays
+      const isToday   = date.getTime() === today.getTime();
+      const isSelected = iso === booking.dateStr;
+
+      let cls = 'cal-day';
+      if (isPast || isSunday) cls += ' disabled';
+      if (isToday) cls += ' today';
+      if (isSelected) cls += ' selected';
+
+      if (isPast || isSunday) {
+        html += `<div class="${cls}">${d}</div>`;
+      } else {
+        html += `<div class="${cls}" onclick="selectDate('${iso}',${calYear},${calMonth+1},${d})">${d}</div>`;
+      }
+    }
+
+    grid.innerHTML = html;
+
+    // Prev/Next nav
+    const prevBtn = document.getElementById('calPrev');
+    const nextBtn = document.getElementById('calNext');
+    if (prevBtn) prevBtn.disabled = (calYear === today.getFullYear() && calMonth === today.getMonth());
+    if (nextBtn) {
+      const maxDate = new Date(today.getFullYear(), today.getMonth() + 3, 1);
+      nextBtn.disabled = (calYear > maxDate.getFullYear()) ||
+                         (calYear === maxDate.getFullYear() && calMonth >= maxDate.getMonth());
+    }
+  }
+
+  document.getElementById('calPrev')?.addEventListener('click', () => {
+    calMonth--;
+    if (calMonth < 0) { calMonth = 11; calYear--; }
+    renderCalendar();
+  });
+  document.getElementById('calNext')?.addEventListener('click', () => {
+    calMonth++;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    renderCalendar();
+  });
+
+  window.selectDate = function(iso, y, m, d) {
+    booking.dateStr = iso;
+    booking.date    = new Date(y, m - 1, d);
+    booking.time    = ''; // reset time
+    renderCalendar();
+    document.getElementById('btnStep1').disabled = false;
+  };
+
+  document.getElementById('btnStep1')?.addEventListener('click', () => {
+    if (!booking.dateStr) return;
+    renderTimeSlots();
+    showStep(2);
+  });
+
+  /* ── STEP 2: TIME SLOTS ──────────────────────────────── */
+  function renderTimeSlots() {
+    const longDate = booking.date
+      ? booking.date.toLocaleDateString('es-MX', { weekday:'long', day:'numeric', month:'long' })
+      : '';
+    const ds = document.getElementById('dateSummaryText');
+    if (ds) ds.textContent = longDate.charAt(0).toUpperCase() + longDate.slice(1);
+    document.getElementById('dateSummary')?.classList.add('show');
+
+    buildTimeGrid('timeGridAM', SLOTS_AM);
+    buildTimeGrid('timeGridPM', SLOTS_PM);
+
+    document.getElementById('btnStep2').disabled = !booking.time;
+  }
+
+  function buildTimeGrid(containerId, slots) {
+    const grid = document.getElementById(containerId);
+    if (!grid) return;
+    grid.innerHTML = slots.map(t => {
+      const isSel = t === booking.time;
+      return `<div class="time-slot${isSel ? ' selected' : ''}" onclick="selectTime('${t}')">${fmt12(t)}</div>`;
+    }).join('');
+  }
+
+  window.selectTime = function(t) {
+    booking.time = t;
+    buildTimeGrid('timeGridAM', SLOTS_AM);
+    buildTimeGrid('timeGridPM', SLOTS_PM);
+    document.getElementById('btnStep2').disabled = false;
+  };
+
+  document.getElementById('btnStep2')?.addEventListener('click', () => {
+    if (!booking.time) return;
+    showStep(3);
+  });
+
+  /* ── STEP 3: DATOS ───────────────────────────────────── */
+  document.getElementById('btnStep3')?.addEventListener('click', () => {
+    const nombre   = document.getElementById('bNombre').value.trim();
+    const telefono = document.getElementById('bTelefono').value.trim();
+    const msgEl    = document.getElementById('formMsg');
+
+    if (!nombre || !telefono) {
+      msgEl.className = 'form-msg error show';
+      msgEl.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Por favor completa nombre y teléfono.';
+      return;
+    }
+    if (telefono.replace(/\D/g,'').length < 7) {
+      msgEl.className = 'form-msg error show';
+      msgEl.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Ingresa un teléfono válido.';
+      return;
+    }
+    msgEl.className = 'form-msg';
+    booking.nombre   = nombre;
+    booking.telefono = telefono;
+    booking.email    = document.getElementById('bEmail').value.trim();
+    booking.notas    = document.getElementById('bNotas').value.trim();
+    showStep(4);
+  });
+
+  /* ── STEP 4: CONFIRM ─────────────────────────────────── */
+  function fillConfirm() {
+    const longDate = booking.date
+      ? booking.date.toLocaleDateString('es-MX', { weekday:'long', day:'numeric', month:'long', year:'numeric' })
+      : '—';
+    document.getElementById('cfmServicio').textContent  = srv ? srv.nombre : '—';
+    document.getElementById('cfmFecha').textContent     = longDate.charAt(0).toUpperCase() + longDate.slice(1);
+    document.getElementById('cfmHora').textContent      = booking.time ? fmt12(booking.time) : '—';
+    document.getElementById('cfmNombre').textContent    = booking.nombre   || '—';
+    document.getElementById('cfmTelefono').textContent  = booking.telefono || '—';
+    document.getElementById('cfmPrecio').textContent    = srv ? fmt(srv.precio) : '—';
+  }
+
+  document.getElementById('btnConfirm')?.addEventListener('click', submitBooking);
+
+  async function submitBooking() {
+    if (!srv) return;
+    const btn   = document.getElementById('btnConfirm');
+    const msgEl = document.getElementById('formMsg2');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando…';
+    msgEl.className = 'form-msg';
+
+    try {
+      await fetch('tables/citas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nombre:   booking.nombre,
+          telefono: booking.telefono,
+          email:    booking.email,
+          servicio: srv.nombre,
+          precio:   srv.precio,
+          duracion: srv.tiempo,
+          fecha:    booking.dateStr,
+          hora:     booking.time,
+          estado:   'pendiente',
+          notas:    booking.notas,
+        }),
+      });
+
+      // Show success
+      document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('stepsBar').style.display = 'none';
+      document.getElementById('bookSuccess').classList.add('show');
+
+      // Fill success detail
+      const longDate = booking.date
+        ? booking.date.toLocaleDateString('es-MX', { weekday:'long', day:'numeric', month:'long', year:'numeric' })
+        : '—';
+      document.getElementById('successDetail').innerHTML = `
+        <p><i class="fa-solid fa-spa"></i> ${srv.nombre}</p>
+        <p><i class="fa-solid fa-calendar-check"></i> ${longDate.charAt(0).toUpperCase() + longDate.slice(1)}</p>
+        <p><i class="fa-solid fa-clock"></i> ${fmt12(booking.time)}</p>
+        <p><i class="fa-solid fa-user"></i> ${booking.nombre} · ${booking.telefono}</p>
+      `;
+
+    } catch(err) {
+      msgEl.className = 'form-msg error show';
+      msgEl.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Error al guardar. Intenta de nuevo o escríbenos por WhatsApp.';
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-calendar-check"></i> Confirmar cita';
+    }
+  }
+
+  /* ── NAVBAR ─────────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () =>
+      navbar.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger?.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      hamburger.classList.toggle('active');
+    });
+  });
+  </script>
+</body>
+</html>
