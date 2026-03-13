@@ -22,6 +22,58 @@ let allVentas = [];
 let citasPage = 1;
 let ventasPage = 1;
 const PAGE_SIZE = 15;
+let reporteVentasActual = []; // Para exportar Excel
+let _mockCache = null; // Cache para usar los mismos datos ficticios en toda la sesión
+
+/* ── DATOS FICTICIOS (para testing cuando no hay datos) ───── */
+function generarDatosFicticios() {
+  if (_mockCache) return _mockCache;
+  const hoy = new Date();
+  const srv = ['Masaje Relajante','Limpieza Facial Profunda','Depilación Pierna Completa','Masaje Piedras Calientes','Dermapen','Reductivo Abdomen','Masaje Sueco','Depilación Bikini Brasileño','Facial Hidratante','Cavitación'];
+  const cat = ['Masaje','Facial','Depilacion','Masaje','Facial','Reductivo','Masaje','Depilacion','Facial','Aparatologia'];
+  const clientes = ['María García','Ana Martínez','Laura Hernández','Carmen López','Sofía Rodríguez','Patricia Díaz','Elena Torres','Rosa Sánchez','Claudia Ramírez','Valeria Flores','Andrea Cruz','Mónica Ortiz'];
+  const metodos = ['efectivo','tarjeta','transferencia'];
+  const precios = [850,950,900,1400,1500,1300,1100,800,700,900];
+
+  const ventas = [];
+  for (let i = 0; i < 45; i++) {
+    const d = new Date(hoy);
+    d.setDate(d.getDate() - Math.floor(Math.random() * 60));
+    const idx = Math.floor(Math.random() * srv.length);
+    ventas.push({
+      id: 'mock-v-' + (i+1),
+      fecha: d.toISOString().slice(0,10),
+      cliente: clientes[Math.floor(Math.random() * clientes.length)],
+      servicio: srv[idx],
+      categoria: cat[idx],
+      monto: precios[idx] + (Math.random() > 0.5 ? 0 : Math.floor(Math.random()*200)),
+      metodo: metodos[Math.floor(Math.random() * 3)],
+      notas: Math.random() > 0.7 ? 'Cliente recurrente' : ''
+    });
+  }
+
+  const citas = [];
+  const estados = ['pendiente','confirmada','completada','cancelada'];
+  for (let i = 0; i < 25; i++) {
+    const d = new Date(hoy);
+    d.setDate(d.getDate() + (Math.random() > 0.3 ? Math.floor(Math.random() * 14) : -Math.floor(Math.random() * 7)));
+    const idx = Math.floor(Math.random() * srv.length);
+    citas.push({
+      id: 'mock-c-' + (i+1),
+      nombre: clientes[Math.floor(Math.random() * clientes.length)],
+      cliente: clientes[Math.floor(Math.random() * clientes.length)],
+      telefono: '998 ' + (100 + Math.floor(Math.random()*900)) + ' ' + (1000 + Math.floor(Math.random()*9000)),
+      email: Math.random() > 0.5 ? 'cliente@ejemplo.com' : '',
+      servicio: srv[idx],
+      fecha: d.toISOString().slice(0,10),
+      hora: ['09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00'][Math.floor(Math.random()*8)],
+      estado: estados[Math.floor(Math.random() * 4)],
+      notas: ''
+    });
+  }
+  _mockCache = { ventas, citas };
+  return _mockCache;
+}
 
 let chartVentas7d   = null;
 let chartTopSrv     = null;
@@ -185,12 +237,20 @@ function initServiceAutofill() {
    DASHBOARD
 ══════════════════════════════════════════════════════════ */
 async function renderDashboard() {
-  const [ventasRes, citasRes] = await Promise.all([
-    fetch('tables/ventas?limit=500').then(r=>r.json()),
-    fetch('tables/citas?limit=500').then(r=>r.json()),
-  ]);
+  let ventasRes, citasRes;
+  try {
+    [ventasRes, citasRes] = await Promise.all([
+      fetch('tables/ventas?limit=500').then(r=>r.json()).catch(()=>({data:[]})),
+      fetch('tables/citas?limit=500').then(r=>r.json()).catch(()=>({data:[]})),
+    ]);
+  } catch (_) { ventasRes = {data:[]}; citasRes = {data:[]}; }
   allVentas = ventasRes.data || [];
   allCitas  = citasRes.data  || [];
+  if (!allVentas.length || !allCitas.length) {
+    const mock = generarDatosFicticios();
+    if (!allVentas.length) allVentas = mock.ventas;
+    if (!allCitas.length)  allCitas  = mock.citas;
+  }
 
   const now       = new Date();
   const mesActual = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
@@ -315,8 +375,11 @@ function renderProxCitas() {
 let citasFiltered = [];
 
 async function loadCitas() {
-  const res = await fetch('tables/citas?limit=500').then(r=>r.json());
-  allCitas = res.data || [];
+  try {
+    const res = await fetch('tables/citas?limit=500').then(r=>r.json()).catch(()=>({data:[]}));
+    allCitas = res.data || [];
+    if (!allCitas.length) allCitas = generarDatosFicticios().citas;
+  } catch (_) { allCitas = generarDatosFicticios().citas; }
   citasFiltered = [...allCitas];
 }
 
@@ -480,8 +543,11 @@ async function saveCita(e) {
 let ventasFiltered = [];
 
 async function loadVentas() {
-  const res = await fetch('tables/ventas?limit=500').then(r=>r.json());
-  allVentas = res.data || [];
+  try {
+    const res = await fetch('tables/ventas?limit=500').then(r=>r.json()).catch(()=>({data:[]}));
+    allVentas = res.data || [];
+    if (!allVentas.length) allVentas = generarDatosFicticios().ventas;
+  } catch (_) { allVentas = generarDatosFicticios().ventas; }
   ventasFiltered = [...allVentas];
 }
 
@@ -640,8 +706,13 @@ async function renderReportes() {
   desde.setDate(desde.getDate() - dias);
   const desdeStr = desde.toISOString().slice(0,10);
 
-  const res = await fetch('tables/ventas?limit=500').then(r=>r.json());
-  const ventas = (res.data || []).filter(v => (v.fecha||'') >= desdeStr);
+  let res;
+  try {
+    res = await fetch('tables/ventas?limit=500').then(r=>r.json()).catch(()=>({data:[]}));
+  } catch (_) { res = { data: [] }; }
+  let ventas = (res.data || []).filter(v => (v.fecha||'') >= desdeStr);
+  if (!ventas.length) ventas = generarDatosFicticios().ventas.filter(v => (v.fecha||'') >= desdeStr);
+  reporteVentasActual = ventas;
 
   const total  = ventas.reduce((s,v)=>s+Number(v.monto||0),0);
   const num    = ventas.length;
@@ -776,6 +847,54 @@ function renderTopServiciosTable(ventas) {
     </tr>`).join('') || '<tr><td colspan="4" style="text-align:center;color:#9e9790;padding:20px">Sin datos en este periodo</td></tr>';
 }
 
+/* ── EXPORTAR A EXCEL (CSV) ─────────────────────────────── */
+function descargarReporteExcel() {
+  const ventas = reporteVentasActual;
+  if (!ventas.length) {
+    showToast('No hay datos para exportar. Genera el reporte primero.', 'error');
+    return;
+  }
+  const total = ventas.reduce((s,v)=>s+Number(v.monto||0),0);
+  const metodos = { efectivo:0, tarjeta:0, transferencia:0 };
+  ventas.forEach(v => { if (v.metodo in metodos) metodos[v.metodo] += Number(v.monto||0); });
+
+  const rows = [
+    ['REPORTE DE VENTAS - GELESHA Spa'],
+    ['Generado:', new Date().toLocaleString('es-MX')],
+    [''],
+    ['RESUMEN'],
+    ['Total ventas (MXN)', total],
+    ['Nº transacciones', ventas.length],
+    ['Ticket promedio', ventas.length ? Math.round(total/ventas.length) : 0],
+    ['Efectivo', metodos.efectivo],
+    ['Tarjeta', metodos.tarjeta],
+    ['Transferencia', metodos.transferencia],
+    [''],
+    ['DETALLE DE VENTAS'],
+    ['Fecha','Cliente','Servicio','Monto','Método','Notas']
+  ];
+  ventas.forEach(v => {
+    rows.push([
+      v.fecha || '',
+      (v.cliente||'').replace(/;/g, ','),
+      (v.servicio||'').replace(/;/g, ','),
+      v.monto || 0,
+      v.metodo || '',
+      (v.notas||'').replace(/;/g, ',')
+    ]);
+  });
+
+  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(';')).join('\n');
+  const BOM = '\uFEFF';
+  const blob = new Blob([BOM + csv], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `reporte-ventas-gelesha-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('Reporte descargado correctamente');
+}
+
 /* ══════════════════════════════════════════════════════════
    UTILITIES
 ══════════════════════════════════════════════════════════ */
@@ -840,6 +959,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Reportes ── */
   document.getElementById('btnGenerarReporte')?.addEventListener('click', renderReportes);
+  document.getElementById('btnDescargarExcel')?.addEventListener('click', descargarReporteExcel);
 
   /* ── Modal overlay close ── */
   document.querySelectorAll('.modal-overlay').forEach(ov => {
